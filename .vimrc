@@ -23,7 +23,7 @@ Plug 'camspiers/lens.vim'
 "Plug 'camspiers/animate.vim'
 Plug 'cometsong/CommentFrame.vim'
 Plug 'lervag/vimtex'
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 Plug 'neoclide/coc.nvim', { 'for': ['scala', 'sbt']}
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-syntax-extra' " c highlighting

@@ -35,15 +35,15 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color 
 set -o vi
 export TERM=xterm-256color
 #export TERM=rxvt-unicode-256color
-if [ ${USER} == "tim" ]; then
-  archey3 --color=cyan
+if [ ${USER} == "tylerheaton16" ]; then
+  #archey3 --color=cyan
   export PATH="$HOME/AUR/matlab/bin:$PATH"
   export PATH="$HOME/.local/rouge/bin/:$PATH"
-  source /home/tim/.fzf/shell/completion.bash
+  #source /home/tim/.fzf/shell/completion.bash
   export PATH="$HOME/.fzf/bin/:$PATH"
   eval $(dircolors ~/.dircolors)
   #source ~/.colors
-  source ~/.functions.sh
+  #source ~/.functions.sh
   export LESSOPEN="| $HOME/.local/rouge/bin/rougify %s 2> /dev/null"                        
   export LESS="-R"
   export EDITOR="/usr/bin/vim"
@@ -51,7 +51,7 @@ if [ ${USER} == "tim" ]; then
 fi
 
 # TSS Only
-if [[ ${USER} == "tim.heaton" || ${USER} == "heaton.49" ]]
+if [[ ${USER} == "heaton.48" ]]
  then
   eval $(dircolors ~/.dircolors)
   alias vtags='python $HOME/.vtags-3.01/vtags.py'

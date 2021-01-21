@@ -51,7 +51,7 @@ if [ ${USER} == "tylerheaton16" ]; then
 fi
 
 # TSS Only
-if [[ ${USER} == "heaton.48" ]]
+if [[ ${USER} == "tylerheaton16" ]]
  then
   eval $(dircolors ~/.dircolors)
   alias vtags='python $HOME/.vtags-3.01/vtags.py'
@@ -94,3 +94,24 @@ export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0
 if [ ${USER} == heaton.49 ]; then
     source $HOME/linuxbrew/all_proxy.sh
 fi
+echo "export HOMEBREW_NO_ENV_FILTERING=1" >> ~/.bashrc
+echo "export HOMEBREW_CURLRC=1" >> ~/.bashrc
+
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1
+export HOMEBREW_NO_ENV_FILTERING=1
+export HOMEBREW_CURLRC=1

@@ -41,7 +41,6 @@ if [ ${USER} == "tylerheaton16" ]; then
   export PATH="$HOME/.local/rouge/bin/:$PATH"
   #source /home/tim/.fzf/shell/completion.bash
   export PATH="$HOME/.fzf/bin/:$PATH"
-  eval $(dircolors ~/.dircolors)
   #source ~/.colors
   #source ~/.functions.sh
   export LESSOPEN="| $HOME/.local/rouge/bin/rougify %s 2> /dev/null"                        
@@ -53,7 +52,6 @@ fi
 # TSS Only
 if [[ ${USER} == "tylerheaton16" ]]
  then
-  eval $(dircolors ~/.dircolors)
   alias vtags='python $HOME/.vtags-3.01/vtags.py'
   export PATH="$HOME/.fzf/bin:$PATH"
   export PATH="$HOME/.linuxbrew/opt/perl/bin:$PATH"
@@ -94,24 +92,7 @@ export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0
 if [ ${USER} == heaton.49 ]; then
     source $HOME/linuxbrew/all_proxy.sh
 fi
-echo "export HOMEBREW_NO_ENV_FILTERING=1" >> ~/.bashrc
-echo "export HOMEBREW_CURLRC=1" >> ~/.bashrc
 
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
-export HOMEBREW_NO_ENV_FILTERING=1
-export HOMEBREW_CURLRC=1
+eval $(dircolors ~/.dircolors)
 export HOMEBREW_NO_ENV_FILTERING=1
 export HOMEBREW_CURLRC=1

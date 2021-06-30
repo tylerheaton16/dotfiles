@@ -93,6 +93,20 @@ if [ ${USER} == heaton.49 ]; then
     source $HOME/linuxbrew/all_proxy.sh
 fi
 
-eval $(dircolors ~/.dircolors)
+eval $(dircolors --sh ~/.dircolors)
 export HOMEBREW_NO_ENV_FILTERING=1
 export HOMEBREW_CURLRC=1
+export PATH="/home/heaton.49/.linuxbrew/bin:$PATH"
+export PATH="/home/heaton.49/.linuxbrew/sbin:$PATH"
+export PATH="/home/heaton.48/.fzf/bin:$PATH"
+export PATH="/home/heaton.48/tools/verilator_bin/bin:$PATH"
+
+if [ ${USER} == heaton.48 ]; then
+    source $HOME/linuxbrew/all_proxy.sh
+fi
+export HOMEBREW_TEMP=/home/heaton.48/.linuxbrew_tmp
+
+if [ ${USER} == heaton.48 ]; then
+    source $HOME/linuxbrew/all_proxy.sh
+fi
+export HOMEBREW_TEMP=/home/heaton.48/.linuxbrew_tmp

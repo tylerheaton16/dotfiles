@@ -106,7 +106,6 @@ if [ ${USER} == heaton.48 ]; then
 fi
 export HOMEBREW_TEMP=/home/heaton.48/.linuxbrew_tmp
 
-if [ ${USER} == heaton.48 ]; then
-    source $HOME/linuxbrew/all_proxy.sh
-fi
-export HOMEBREW_TEMP=/home/heaton.48/.linuxbrew_tmp
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

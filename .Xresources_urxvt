@@ -1,7 +1,7 @@
 !rxvt controls
 Xft*dpi: 256
 URxvt*termName: rxvt-unicode-256color
-URxvt*geometry:  210:46
+!URxvt*geometry:  210:46
 
 URxvt*foreground:  #00875F
 !URxvt*foreground:   #00AFAF
@@ -66,7 +66,7 @@ URxvt.internalBorder:   1
 !URxvt*background: rgba:0000/0000/0000/cccc
 
 !URxvt*fading:  0
-URxvt*transparent: true
+URxvt*transparent: false
 URxvt*shading: 15
 
 ## Rofi Theming

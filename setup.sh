@@ -45,20 +45,20 @@ fi
 #####################################################################
 # Create .bash_profile symlink. If already exists, backup and replace
 #####################################################################
-if [ -e $HOME/.bash_profile ]; then 
-    mv $HOME/.bash_profile $HOME/$BACKUP/.bash_profile_bak
-    ln -s $HOME/dotfiles/.bash_profile $HOME/.bash_profile
-else
-    ln -s $HOME/dotfiles/.bash_profile $HOME/.bash_profile
-fi
+#if [ -e $HOME/.bash_profile ]; then 
+#    mv $HOME/.bash_profile $HOME/$BACKUP/.bash_profile_bak
+#    ln -s $HOME/dotfiles/.bash_profile $HOME/.bash_profile
+#else
+#    ln -s $HOME/dotfiles/.bash_profile $HOME/.bash_profile
+#fi
 ###############################################################
 # Create .bashrc symlink. If already exists, backup and replace
 ###############################################################
-if [ -e $HOME/.bashrc ]; then 
-    mv $HOME/.bashrc $HOME/$BACKUP/.bashrc_bak
-    ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+if [ -e $HOME/.bash_aliases ]; then 
+    mv $HOME/.bash_aliases $HOME/$BACKUP/.bash_aliases_bak
+    ln -s $HOME/dotfiles/.bash_aliases $HOME/.bash_aliases
 else
-    ln -s $HOME/dotfiles/.bashrc $HOME/.bashrc
+    ln -s $HOME/dotfiles/.bash_aliases $HOME/.bash_aliases
 fi
 ###################################################################
 # Create .dircolors symlink. If already exists, backup and replace
@@ -69,42 +69,20 @@ if [ -e $HOME/.dircolors ]; then
 else
     ln -s $HOME/dotfiles/.dircolors $HOME/.dircolors
 fi
-##########################################################################
-# Create .fan symlink (fan control). If already exists, backup and replace
-##########################################################################
-if [ -e $HOME/.fan ]; then 
-    mv $HOME/.fan $HOME/$BACKUP/.fan_bak
-    ln -s $HOME/dotfiles/.fan $HOME/.fan
-else
-    ln -s $HOME/dotfiles/.fan $HOME/.fan
-fi
-################################################################################
-# Do not set .fehbg as symlink. Sourcing .sh overwrites relative paths (feh bug) 
-#If already exists, backup and replace
-# Note that a background path is inside of the file. 
-################################################################################
-if [ -e $HOME/.fehbg ]; then 
-    mv $HOME/.fehbg $HOME/$BACKUP/.fehbg_bak
-    cp $HOME/dotfiles/.fehbg $HOME
-else
-    cp $HOME/dotfiles/.fehbg $HOME
-fi
-sh $HOME/.fehbg 2> /dev/null
-# Sets background to default red_wave
 
 ########################################################
 # Create .i3 file symlink. If exists, backup and replace
 ########################################################
-if [ -d $HOME/.config/i3 ]; then 
-    cp -RL $HOME/.config/i3/config $HOME/$BACKUP/.i3_config_bak
-    ln -s $HOME/dotfiles/.i3_config $HOME/.config/i3/config
-else
-
-    echo " "
-    echo "Warning: i3 not Installed. "
-    echo "Please Install i3 and Run"
-    echo "Again for i3 Config"
-fi
+#if [ -d $HOME/.config/i3 ]; then 
+#    cp -RL $HOME/.config/i3/config $HOME/$BACKUP/.i3_config_bak
+#    ln -s $HOME/dotfiles/.i3_config $HOME/.config/i3/config
+#else
+#
+#    echo " "
+#    echo "Warning: i3 not Installed. "
+#    echo "Please Install i3 and Run"
+#    echo "Again for i3 Config"
+#fi
 ##############################################################
 # Create .inputrc file symlink. If exists, backup and replace. 
 ##############################################################

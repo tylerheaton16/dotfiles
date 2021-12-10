@@ -138,3 +138,6 @@ export HOMEBREW_TEMP=/home/heaton.48/.linuxbrew_tmp
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/heaton.48/.sdkman"
 [[ -s "/home/heaton.48/.sdkman/bin/sdkman-init.sh" ]] && source "/home/heaton.48/.sdkman/bin/sdkman-init.sh"
+source $HOME/.bash_aliases
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

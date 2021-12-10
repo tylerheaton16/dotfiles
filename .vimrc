@@ -24,12 +24,12 @@ Plug 'camspiers/lens.vim'
 Plug 'cometsong/CommentFrame.vim'
 Plug 'lervag/vimtex'
 "Plug 'ycm-core/YouCompleteMe'
-Plug 'neoclide/coc.nvim', { 'for': ['scala', 'sbt']}
+"Plug 'neoclide/coc.nvim', { 'for': ['scala', 'sbt']}
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-syntax-extra' " c highlighting
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/tcl.vim--smithfield'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'vim-airline/vim-airline'
 "Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}

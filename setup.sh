@@ -182,16 +182,6 @@ if [ ! -d $HOME/.terminfo ]; then
     cp -R $HOME/dotfiles/.terminfo $HOME
 fi
 
-##############################################################
-# Create .xbindkeysrc file for arch linux bindkeys
-##############################################################
-if [ -e $HOME/.xbindkeysrc ]; then 
-    mv $HOME/.xbindkeysrc $HOME/$BACKUP/.xbindkeys_bak
-    ln -s $HOME/dotfiles/.xbindkeysrc $HOME/.xbindkeysrc
-else
-    ln -s $HOME/dotfiles/.xbindkeysrc $HOME/.xbindkeysrc
-fi
-
 
 #------------------------------------------------------------------------------#
 #                               Custom Vim Syntax                              #

@@ -1,0 +1,137 @@
+#!/bin/bash -e
+
+# Keep track of this script's directory.
+cd $(dirname $0)
+export DOTFILES_DIR="$(pwd)"
+
+# Import custom functions.
+export DOTFILES_LIB="$DOTFILES_DIR/dotfiles_lib"
+source $DOTFILES_LIB
+
+# If the user accidentally ran this as root, tell them that this might be wrong.
+if [[ "$(id -u)" == "0" ]] ; then
+    wecho "You're running as root! Installation will occur in this HOME directory: $HOME"
+
+    # Give the user the option to exit and re-run the script as a non-root
+    # user.
+    read -p "Do you want to continue running this script as root? [y/n] " yn
+    if [[ "$yn" != "y" ]] ; then
+        exit 0
+    fi
+fi
+
+if [ ! -d $HOME/dotfiles_backup ]; then
+    mkdir $HOME/dotfiles_backup
+fi
+
+if [ ! -d $HOME/dotfiles_backup/.vim ]; then
+    mkdir $HOME/dotfiles_backup/.vim
+fi
+
+export BACKUP="dotfiles_backup"
+
+# Install dotfiles configuration file.
+export USER_CONFIG_FILE="$DOTFILES_DIR/dotfiles.cfg"
+$DOTFILES_DIR/config/install.sh
+source $USER_CONFIG_FILE
+
+
+## Customize vimrc config file
+if $CFG_INSTALL_VIMRC ; then
+    iecho "Symlinking .vimrc"
+    $DOTFILES_DIR/vimrc/install.sh
+fi
+
+## Customize spacemacs config file
+if $CFG_INSTALL_SPACEMACS ; then
+    iecho "Symlinking .spacemacs"
+    $DOTFILES_DIR/spacemacs/install.sh
+fi
+
+## Customize spacemacs config file
+if $CFG_INSTALL_BASH_ALIASES ; then
+    iecho "Symlinking .bash_aliases"
+    $DOTFILES_DIR/bash_aliases/install.sh
+fi
+
+## Customize spacemacs config file
+if $CFG_INSTALL_DIRCOLORS ; then
+    iecho "Symlinking .dircolors"
+    $DOTFILES_DIR/dircolors/install.sh
+fi
+
+## Customize spacemacs config file
+if $CFG_INSTALL_XRESOURCES ; then
+    iecho "Symlinking .Xresources"
+    $DOTFILES_DIR/Xresources/install.sh
+fi
+
+## Installing fzf
+if $CFG_INSTALL_FZF ; then
+    iecho "Installing fzf"
+    $DOTFILES_DIR/fzf/install.sh
+fi
+
+######################################################################
+# Create .tmux.conf TMUX configuration file
+######################################################################
+if [ -e $HOME/.tmux.conf ]; then 
+    mv $HOME/.tmux.conf $HOME/$BACKUP/.tmux.conf_bak
+    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf 
+else
+    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+fi
+
+##################################################################
+# Create .elisp file to hold verilog-auto.el file   
+##################################################################
+if [ -e $HOME/.elisp ]; then 
+    mv $HOME/.elisp $HOME/$BACKUP/.elisp_bak
+    ln -s $HOME/dotfiles/.elisp $HOME/.elisp
+else
+    ln -s $HOME/dotfiles/.elisp $HOME/.elisp
+fi
+
+
+#------------------------------------------------------------------------------#
+#                              Added plug install                              #
+#------------------------------------------------------------------------------#
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
+##################################################################
+#Install Tmux Theme Pack If Not Installed ########################
+##################################################################
+if [ ! -d $HOME/.tmux-themepack ]; then 
+ git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
+ echo "Tmux Themepack Not Installed: Installing"
+ echo " "
+fi
+
+
+##################################################################
+#Create URxvt/Xterm Color Files for 256 ##########################
+##################################################################
+if [ ! -d $HOME/.terminfo ]; then 
+    cp -R $HOME/dotfiles/.terminfo $HOME
+fi
+
+
+#------------------------------------------------------------------------------#
+#                               Custom Vim Syntax                              #
+#------------------------------------------------------------------------------#
+if [ -d $HOME/.vim/syntax ]; then 
+    mv $HOME/.vim/syntax $HOME/$BACKUP/.vim/syntax_bak
+    ln -s $HOME/dotfiles/syntax $HOME/.vim/syntax
+else
+    ln -s $HOME/dotfiles/syntax $HOME/.vim/syntax
+fi
+
+vim +PlugInstall +qall
+rm $HOME/.vim/plugged/vim256-color/colors/elda.vim
+ln -s $HOME/dotfiles/colorschemes/elda.vim $HOME/.vim/plugged/vim256-color/colors/elda.vim
+# Remove the normal mode Comment bindings
+sed -i 's/ni/n/g' $HOME/.vim/plugged/CommentFrame.vim/plugin/CommentFrame.vim
+
+iecho "Finished!"

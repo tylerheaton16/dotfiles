@@ -319,4 +319,4 @@ let g:floaterm_keymap_toggle = '<F4>'
 "------------------------------------------------------------------------------"
 let g:VimTodoListsDatesEnabled = 1
 let g:VimTodoListsMoveItems = 0
-
+set ambw=double

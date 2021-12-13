@@ -89,4 +89,5 @@ eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_NO_ENV_FILTERING=1
 #export HOMEBREW_CURLRC=1
 export PATH="/home/heaton.48/.fzf/bin:$PATH"
+alias vtags='python $HOME/.vtags-3.01/vtags.py'
 

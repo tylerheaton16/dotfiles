@@ -21,7 +21,6 @@ Plug 'psliwka/vim-smoothie'
 "Plug 'thinca/vim-localrc'
 Plug 'camspiers/lens.vim'
 "Plug 'camspiers/animate.vim'
-Plug 'cometsong/CommentFrame.vim'
 Plug 'lervag/vimtex'
 "Plug 'ycm-core/YouCompleteMe'
 "Plug 'neoclide/coc.nvim', { 'for': ['scala', 'sbt']}
@@ -234,8 +233,10 @@ let g:vimtex_quickfix_ignore_filters = [
 "------------------------------------------------------------------------------"
 "                                vtags Keybinds                                "
 "------------------------------------------------------------------------------"
-if ($USER == "tim.heaton")
+if filereadable(expand("$HOME/.vtags-3.01/vtags_vim_api.vim"))
     source ~/.vtags-3.01/vtags_vim_api.vim
+else
+    echo "Vtags Not Installed: Re-Run Install"
 endif
 
 "------------------------------------------------------------------------------"

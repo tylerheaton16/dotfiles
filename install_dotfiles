@@ -72,6 +72,12 @@ if $CFG_INSTALL_FZF ; then
     $DOTFILES_DIR/fzf/install.sh
 fi
 
+## Installing fzf
+if $CFG_INSTALL_VTAGS ; then
+    iecho "Installing VTAGS"
+    $DOTFILES_DIR/vtags/install.sh
+fi
+
 ######################################################################
 # Create .tmux.conf TMUX configuration file
 ######################################################################

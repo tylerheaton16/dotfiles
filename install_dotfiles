@@ -72,12 +72,17 @@ if $CFG_INSTALL_FZF ; then
     $DOTFILES_DIR/fzf/install.sh
 fi
 
-## Installing fzf
+## Installing vtags
 if $CFG_INSTALL_VTAGS ; then
     iecho "Installing VTAGS"
     $DOTFILES_DIR/vtags/install.sh
 fi
 
+## Installing urxvt
+if $CFG_INSTALL_URXVT ; then
+    iecho "Installing urxvt"
+    $DOTFILES_DIR/urxvt/install.sh
+fi
 ######################################################################
 # Create .tmux.conf TMUX configuration file
 ######################################################################

@@ -33,8 +33,8 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color 
 
 
 set -o vi
-export TERM=xterm-256color
-#export TERM=rxvt-unicode-256color
+#export TERM=xterm-256color
+export TERM=rxvt-unicode-256color
 if [ ${USER} == "tylerheaton16" ]; then
   #archey3 --color=cyan
   export PATH="$HOME/AUR/matlab/bin:$PATH"
@@ -90,4 +90,5 @@ eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_CURLRC=1
 export PATH="/home/heaton.48/.fzf/bin:$PATH"
 alias vtags='python $HOME/.vtags-3.01/vtags.py'
-
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8

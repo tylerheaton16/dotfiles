@@ -30,7 +30,7 @@ Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/tcl.vim--smithfield'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 "Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 "Plug 'aserebryakov/vim-todo-lists'
 "Plug 'tagexplorer.vim'

@@ -11,7 +11,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'noah/vim256-color'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'godlygeek/tabular'
-"Plug 'vim-scripts/verilog_emacsauto.vim'
+Plug 'vim-scripts/verilog_emacsauto.vim'
 "Plug 'raingo/vim-matlab'
 "Plug 'junegunn/vim-easy-align'
 Plug 'benmills/vimux' "From vim can open tmux terminals
@@ -28,9 +28,11 @@ Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-syntax-extra' " c highlighting
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/tcl.vim--smithfield'
+Plug 'tpope/vim-vinegar'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-"Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 "Plug 'aserebryakov/vim-todo-lists'
 "Plug 'tagexplorer.vim'
@@ -134,7 +136,7 @@ au BufRead,BufNewFile *.il set filetype=skill
 au BufRead,BufNewFile *.ils set filetype=skill
 au BufRead,BufNewFile *.cdsinit set filetype=skill
 au BufRead,BufNewFile *.cdsenv set filetype=skill
-au BufRead,BufNewFile *.v,*.vg set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.v,*.vg,*.sv set filetype=verilog_systemverilog.verilog
 au BufRead,BufNewFile *.xdc set filetype=xdc
 au BufRead,BufNewFile *.txt set filetype=notes
 au BufRead,BufNewFile *.tex setlocal textwidth=80
@@ -143,7 +145,7 @@ au BufRead,BufNewFile *.py set tabstop=4
     \ shiftwidth=4
     \ textwidth=80
     \ autoindent
-
+au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "------------------------------------------------------------------------------"
 "                                 Vim-Fugitive + vimbinds                      "
 "------------------------------------------------------------------------------"
@@ -307,17 +309,12 @@ let g:floaterm_keymap_next = '<F3>'
 let g:floaterm_keymap_toggle = '<F4>'
 
 
-"let g:ycm_language_server = [
-"  \   { 'name': 'scala',
-"  \     'filetypes': [ 'scala', 'sbt' ],
-"  \     'cmdline': [ 'metals-vim' ],
-"  \     'project_root_files': [ 'build.sbt' ]
-"  \   },
-"  \ ]
-
 "------------------------------------------------------------------------------"
 "                                vim-todo-lists                                "
 "------------------------------------------------------------------------------"
 let g:VimTodoListsDatesEnabled = 1
 let g:VimTodoListsMoveItems = 0
 set ambw=double
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='serene'

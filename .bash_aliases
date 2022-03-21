@@ -79,6 +79,14 @@ On_IPurple="\[\033[10;95m\]"  # Purple
 On_ICyan="\[\033[0;106m\]"    # Cyan
 On_IWhite="\[\033[0;107m\]"   # White
 
+# Various variables you might want for your PS1 prompt instead
+Time12h="\T"
+Time12a="\@"
+PathShort="\w"
+PathFull="\W"
+NewLine="\n"
+Jobs="\j"
+
 ################Aliasing##################
 alias ls='ls --color=auto'
 alias vi='vim'
@@ -158,7 +166,7 @@ git_branch() {
       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]$BPurple(\$(git_branch))$Color_Off "
+export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(tput sgr0)\] $BPurple\$(git_branch)$Color_Off "
 
 
 if [ ${USER} == heaton.49 ]; then

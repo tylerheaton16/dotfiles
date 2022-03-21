@@ -79,6 +79,7 @@ highlight search ctermbg = green
 let mapleader ="\<Space>" " Change spacebar to leader key
 let maplocalleader ="\<Space>"
 nnoremap <leader>q :qa! <CR>
+nnoremap <leader>c :q   <CR>
 nnoremap <leader>wh <C-w>h
 nnoremap <leader>wj <C-w>j
 nnoremap <leader>wk <C-w>k
@@ -156,6 +157,7 @@ nnoremap <leader>gd  :Gvdiffsplit!
 nnoremap <leader>gb  :Git blame
 nnoremap <leader>gs  :Git status <CR>
 nnoremap <leader>gw  :Gwrite <CR>
+nnoremap <leader>g   :Git <CR>
 nnoremap <leader>o   :only <CR>
 " Note that Vim-Fugitive uses //2 and //3 for 3-way diff puts/gets
 nnoremap <leader>gdh  :diffget //2 <CR>
@@ -310,11 +312,16 @@ let g:floaterm_keymap_toggle = '<F4>'
 
 
 "------------------------------------------------------------------------------"
+"                                vim-fugitive                                  "
+"------------------------------------------------------------------------------"
+"sets up folding when doing a git log
+autocmd FileType git setlocal foldmethod=syntax
+"------------------------------------------------------------------------------"
 "                                vim-todo-lists                                "
 "------------------------------------------------------------------------------"
 let g:VimTodoListsDatesEnabled = 1
 let g:VimTodoListsMoveItems = 0
 set ambw=double
 let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+"let g:airline#extensions#tabline#enabled=1
 let g:airline_theme='serene'

@@ -32,7 +32,7 @@ export BACKUP="dotfiles_backup"
 
 # Install dotfiles configuration file.
 export USER_CONFIG_FILE="$DOTFILES_DIR/dotfiles.cfg"
-$DOTFILES_DIR/config/install.sh
+source $DOTFILES_DIR/config/install.sh
 source $USER_CONFIG_FILE
 
 
@@ -82,6 +82,12 @@ fi
 if $CFG_INSTALL_URXVT ; then
     iecho "Installing urxvt"
     $DOTFILES_DIR/urxvt/install.sh
+fi
+
+## Installing urxvt
+if $CFG_INSTALL_DELTA ; then
+    iecho "Installing git-delta"
+    $DOTFILES_DIR/git-delta/install.sh
 fi
 ######################################################################
 # Create .tmux.conf TMUX configuration file
@@ -143,6 +149,6 @@ vim +PlugInstall +qall
 rm $HOME/.vim/plugged/vim256-color/colors/elda.vim
 ln -s $HOME/dotfiles/colorschemes/elda.vim $HOME/.vim/plugged/vim256-color/colors/elda.vim
 # Remove the normal mode Comment bindings
-sed -i 's/ni/n/g' $HOME/.vim/plugged/CommentFrame.vim/plugin/CommentFrame.vim
+#sed -i 's/ni/n/g' $HOME/.vim/plugged/CommentFrame.vim/plugin/CommentFrame.vim
 
 iecho "Finished!"

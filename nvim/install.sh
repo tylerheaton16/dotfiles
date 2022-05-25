@@ -12,6 +12,19 @@ fi
 # Import custom functions.
 source $DOTFILES_LIB
 
+if [ ! -d "$HOME/.local/bin/nvim" ]; then
+    mkdir $HOME/.local/bin/nvim
+fi
+if [ ! -d "$HOME/.local/share/nvim" ]; then
+    mkdir $HOME/.local/share/nvim
+fi
+if [ ! -d "$HOME/.config/nvim" ]; then
+    mkdir $HOME/.config/nvim
+fi
+if [ ! -d "$HOME/.config/nvim/lua" ]; then
+    mkdir $HOME/.config/nvim/lua
+fi
+
 if [ ! -f $HOME/nvim.appimage ]; then
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     mv nvim.appimage $HOME/.local/bin/nvim

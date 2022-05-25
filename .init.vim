@@ -14,31 +14,25 @@ Plug 'noah/vim256-color'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'godlygeek/tabular'
 Plug 'vim-scripts/verilog_emacsauto.vim'
-"Plug 'raingo/vim-matlab'
 "Plug 'junegunn/vim-easy-align'
 Plug 'benmills/vimux' "From vim can open tmux terminals
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'amal-khailtash/vim-xdc-syntax'
 Plug 'psliwka/vim-smoothie'
 "Plug 'thinca/vim-localrc'
 Plug 'camspiers/lens.vim'
 "Plug 'camspiers/animate.vim'
 Plug 'lervag/vimtex'
 "Plug 'ycm-core/YouCompleteMe'
-"Plug 'neoclide/coc.nvim', { 'for': ['scala', 'sbt']}
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-syntax-extra' " c highlighting
 Plug 'vim-python/python-syntax'
 Plug 'vim-scripts/tcl.vim--smithfield'
 Plug 'tpope/vim-vinegar'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 "Plug 'aserebryakov/vim-todo-lists'
 "Plug 'tagexplorer.vim'
-"Plug 'dense-analysis/ale'
 "Plug 'liuchengxu/vista.vim'
 "Plug 'ludovicchabant/vim-gutentags'
 Plug 'dhruvasagar/vim-table-mode'
@@ -194,12 +188,6 @@ nmap <leader>hw :%!xxd -r<CR> :set binary<CR> :set filetype=<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "------------------------------------------------------------------------------"
-"                               ale Configuration                              "
-"------------------------------------------------------------------------------"
-let g:ale_c_parse_makefile = 1
-let g:ale_linters = {'c': ['gcc']}
-
-"------------------------------------------------------------------------------"
 "                              animate/lens Config                             "
 "------------------------------------------------------------------------------"
 "let g:lens#disabled_filetypes = ['vundle', 'qf', 'vista', '']
@@ -332,4 +320,5 @@ let g:VimTodoListsMoveItems = 0
 set ambw=double
 let g:airline_powerline_fonts=1
 "let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='serene'
+"let g:airline_theme='serene'
+let g:airline_theme='deus'

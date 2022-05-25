@@ -39,6 +39,7 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'dense-analysis/ale'
 "Plug 'liuchengxu/vista.vim'
 "Plug 'ludovicchabant/vim-gutentags'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 """""""""""""""""""""""""""""""""""""
 set updatetime=1000
@@ -205,6 +206,12 @@ let g:lens#height_resize_max = (winheight(0)*8/10)
 let g:lens#height_resize_min = (winheight(0)*8/10)
 let g:lens#width_resize_max = (winwidth(0)*8/10)
 let g:lens#width_resize_min = (winwidth(0)*8/10)
+
+"------------------------------------------------------------------------------"
+"                           Vim Table - ReSt Support                           "
+"------------------------------------------------------------------------------"
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
 
 """"""" superbar Configuration"""""""
 let g:SuperTabDefaultCompletionType = 'context'

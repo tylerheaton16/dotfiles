@@ -4,6 +4,8 @@
 set nocompatible
 "filetype off " required
 
+lua require('plugins')
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'https://github.com/tarikgraba/vim-lefdef.git'
@@ -48,7 +50,6 @@ let g:python_version_2 = 0
 let b:python_version_2 = 0
 
 set rtp+=~/dotfiles/myhelp/
-colorscheme elda
 syntax on
 filetype plugin indent on
 set foldmethod=manual

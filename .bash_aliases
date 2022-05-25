@@ -97,6 +97,7 @@ alias matlab='matlab -nosplash -nodesktop'
 alias grep='grep --color=yes'
 alias vimrc='vim $HOME/.vimrc'
 alias initvim='nvim $HOME/.config/nvim/init.vim'
+alias vim='nvim'
 alias bashrc='vim $HOME/.bashrc'
 alias ..="cd ../"
 alias ....="cd ../../"

@@ -19,3 +19,11 @@ if [ ! -f $HOME/nvim.appimage ]; then
     export PATH="$HOME/.local/bin/nvim:$PATH"
      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
+
+#symlinking .nvim
+if [ -e $HOME/.config/nvim/init.vim ]; then
+     mv $HOME/.config/nvim/init.vim $HOME/$BACKUP/.init.vim_bak
+     ln -s $HOME/dotfiles/.init.vim $HOME/.config/nvim/init.vim
+ else
+     ln -s $HOME/dotfiles/.init.vim $HOME/.config/nvim/init.vim
+ fi

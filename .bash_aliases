@@ -176,8 +176,8 @@ fi
 eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_NO_ENV_FILTERING=1
 #export HOMEBREW_CURLRC=1
-export PATH="/home/heaton.48/.fzf/bin:$PATH"
 export PATH="/home/users/tyler.heaton/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 alias vtags='python $HOME/.vtags-3.01/vtags.py'
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

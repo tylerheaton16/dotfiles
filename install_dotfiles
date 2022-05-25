@@ -36,6 +36,12 @@ source $DOTFILES_DIR/config/install.sh
 source $USER_CONFIG_FILE
 
 
+## Installing nvim.appimage
+if $CFG_INSTALL_NVIM ; then
+    iecho "Installing nvim.appimage"
+    $DOTFILES_DIR/nvim/install.sh
+fi
+
 ## Customize vimrc config file
 if $CFG_INSTALL_VIMRC ; then
     iecho "Symlinking .vimrc"

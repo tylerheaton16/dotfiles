@@ -5,14 +5,12 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Packages
---  use 'JoosepAlviste/palenightfall.nvim'
---  require('palenightfall').setup()
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
   use 'anott03/nvim-lspinstall'
 
-  -- From vimrc
+-- From vimrc
   use 'tpope/vim-fugitive'
   use 'https://github.com/tarikgraba/vim-lefdef.git'
   use 'junegunn/fzf.vim'
@@ -25,7 +23,7 @@ return require('packer').startup(function()
   use 'camspiers/lens.vim'
   use 'lervag/vimtex'
   use 'voldikss/vim-floaterm'
-  use 'justinmk/vim-syntax-extra' -- c highlighting
+--  use 'justinmk/vim-syntax-extra' -- c highlighting
   use 'vim-python/python-syntax'
   use 'vim-scripts/tcl.vim--smithfield'
   use 'tpope/vim-vinegar'
@@ -38,5 +36,6 @@ return require('packer').startup(function()
   use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
   use({'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" }})
   use 'nvim-treesitter/nvim-treesitter'
+  use 'p00f/nvim-ts-rainbow'
 
 end)

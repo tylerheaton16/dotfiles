@@ -103,9 +103,10 @@ cmd[[let g:table_mode_corner_corner='+']]
 cmd[[let g:table_mode_header_fillchar='=']]
 
 -- File Finder Commands
-nmap("<leader>ff", ":Files")
-nmap("<leader>tt", ":Tags <CR>")
-nmap("<leader>bb", ":Buffers <CR>")
+nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
+nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
+nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 
 -- airline themes
 cmd[[let g:airline_powerline_fonts=1]]

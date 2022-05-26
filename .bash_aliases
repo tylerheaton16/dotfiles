@@ -96,7 +96,7 @@ alias dirs='dirs -v'
 alias matlab='matlab -nosplash -nodesktop'
 alias grep='grep --color=yes'
 alias vimrc='vim $HOME/.vimrc'
-alias initvim='nvim $HOME/.config/nvim/init.vim'
+alias initlua='nvim $HOME/.config/nvim/init.lua'
 alias vim='nvim'
 alias bashrc='vim $HOME/.bashrc'
 alias ..="cd ../"
@@ -179,6 +179,8 @@ eval $(dircolors --sh ~/.dircolors)
 export PATH="/home/users/tyler.heaton/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/share/coursier/bin:$PATH"
+export PATH="/home/users/tim/.linuxbrew/bin:$PATH"
+export PATH="/home/users/tim/.linuxbrew/sbin:$PATH"
 alias vtags='python $HOME/.vtags-3.01/vtags.py'
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

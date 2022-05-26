@@ -10,7 +10,6 @@ return require('packer').startup(function()
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
   use 'anott03/nvim-lspinstall'
 
   -- From vimrc

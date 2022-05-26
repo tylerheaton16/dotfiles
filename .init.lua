@@ -1,6 +1,7 @@
 -- Neovim Configurations
 --
 require('plugins')
+require('treesitter')
 
 local cmd = vim.cmd -- shorthand for the vim.cmd('cd') calls
 local fn = vim.fn -- shorthand for fn.bufnr() calls
@@ -95,11 +96,11 @@ nmap("<silent> <leader>wk", "TmuxNavigateUp <CR>")
 nmap("<silent> <leader>wl", "TmuxNavigateRight <CR>")
 
 -- fzf Config
---opt("g", "fzf_layout", { 'Window': { 'width' : 0.9, 'height': 0.6 } })
+cmd[[let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }]]
 
 -- Vim Table - ReSt Support 
---opt("g", "table_mode_corner_corner", +)
---opt("g", "table_mode_header_fillchar", =)
+cmd[[let g:table_mode_corner_corner='+']]
+cmd[[let g:table_mode_header_fillchar='=']]
 
 -- File Finder Commands
 nmap("<leader>ff", ":Files")
@@ -107,8 +108,8 @@ nmap("<leader>tt", ":Tags <CR>")
 nmap("<leader>bb", ":Buffers <CR>")
 
 -- airline themes
---opt("g", "airline_powerline_fonts", 1)
---opt("g", "airline_theme", deus)
+cmd[[let g:airline_powerline_fonts=1]]
+cmd[[let g:airline_theme='deus']]
 
 -- Global Settings
 --opt("g", "python_highlight_all", 1)
@@ -149,8 +150,8 @@ cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoption
 cmd([[highlight search ctermbg = green]])
 --opt("o", "noshowmode", "true")
 
---cmd([[highlight search guibg = green]])
---nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
+cmd([[highlight search guibg = green]])
+nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
 
 		--bold
 		--underline
@@ -168,29 +169,35 @@ cmd([[highlight search ctermbg = green]])
 
 cmd("set rtp+=~/dotfiles/myhelp/")
 cmd("set rtp+=~/.fzf/")
+cmd([[colorscheme terafox]])
 
--- Auto install packer.nvim if not exists
--- Bootstrap packer installation
-
-require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-        "bash",
-        "c",
-        "comment",
-        "cpp",
-        "html",
-        "json",
-        "latex",
-        "lua",
-        "python",
-        "regex",
-        "rst",
-        "scala",
-        "verilog",
-        "yaml",
-        --"devicetree",
-    },
-    highlight = { enable = true },
-    textobjects = { enable = true },
-    incremental_selection = { enable = true },
+require('nightfox').setup({
+    options = {
+        --Compiled file's destination location
+        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+        compile_file_suffix = "_compiled", -- Compiled file suffix
+        transparent = false,    -- Disable setting background
+        terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+        dim_inactive = false,   -- Non focused panes set to alternative background
+        styles = {              -- Style to be applied to different syntax groups
+            comments = "NONE",    -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "NONE",
+            constants = "NONE",
+            functions = "NONE",
+            keywords = "NONE",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "NONE",
+            variables = "NONE",
+        },
+        inverse = {             -- Inverse highlight for different types
+            match_paren = true,
+            visual = false,
+            search = false,
+        },
+        modules = {             -- List of various plugins and additional options
+        -- ...
+        },
+    }
 })

@@ -5,13 +5,13 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   -- Packages
-  use 'JoosepAlviste/palenightfall.nvim'
-  require('palenightfall').setup()
+--  use 'JoosepAlviste/palenightfall.nvim'
+--  require('palenightfall').setup()
+  use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'neovim/nvim-lspconfig'
   use 'nvim-lua/completion-nvim'
   use 'anott03/nvim-lspinstall'
- -- use 'nvim-treesitter/nvim-treesitter'
 
   -- From vimrc
   use 'tpope/vim-fugitive'
@@ -38,5 +38,6 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
   use({'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" }})
+  use 'nvim-treesitter/nvim-treesitter'
 
 end)

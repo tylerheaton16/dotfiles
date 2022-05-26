@@ -12,9 +12,6 @@ fi
 # Import custom functions.
 source $DOTFILES_LIB
 
-if [ ! -d "$HOME/.local/bin/nvim" ]; then
-    mkdir $HOME/.local/bin/nvim
-fi
 if [ ! -d "$HOME/.local/share/nvim" ]; then
     mkdir $HOME/.local/share/nvim
 fi
@@ -27,19 +24,26 @@ fi
 
 if [ ! -f $HOME/nvim.appimage ]; then
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    mv nvim.appimage $HOME/.local/bin/nvim
+        if [[ -f $HOME/.local/bin/nvim ]]
+        then
+            rm $HOME/.local/bin/nvim
+        fi
+    mv -f nvim.appimage $HOME/.local/bin/nvim
     chmod u+x $HOME/.local/bin/nvim
     export PATH="$HOME/.local/bin/nvim:$PATH"
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+       # if [[ -f $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim ]]
+       # then
+       #     rm $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
+       # fi
+    git_clone_or_update  https://github.com/wbthomason/packer.nvim $HOME/.local/share/nvim/site/pack/packer/start/packer.nvim
 fi
 
 #symlinking .nvim
-if [ -e $HOME/.config/nvim/init.vim ]; then
-     mv $HOME/.config/nvim/init.vim $HOME/$BACKUP/.init.vim_bak
-     ln -s $HOME/dotfiles/.init.vim $HOME/.config/nvim/init.vim
+if [ -e $HOME/.config/nvim/init.lua ]; then
+     mv $HOME/.config/nvim/init.lua $HOME/$BACKUP/.init.lua_bak
+     ln -s $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
  else
-     ln -s $HOME/dotfiles/.init.vim $HOME/.config/nvim/init.vim
+     ln -s $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
 fi
 
 #Copy over plugins.lua
@@ -48,4 +52,12 @@ if [ -e $HOME/.config/nvim/lua/plugins.lua ]; then
      ln -s $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
  else
      ln -s $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
+fi
+
+#Copy over treesitter.lua
+if [ -e $HOME/.config/nvim/lua/treesitter.lua ]; then
+     mv $HOME/.config/nvim/lua/treesitter.lua $HOME/$BACKUP/.treesitter.lua_bak
+     ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
+ else
+     ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
 fi

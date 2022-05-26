@@ -119,8 +119,6 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color 
 
 
 set -o vi
-#export TERM=xterm-256color
-export TERM=rxvt-unicode-256color
 if [ ${USER} == "tylerheaton16" ]; then
   #archey3 --color=cyan
   export PATH="$HOME/AUR/matlab/bin:$PATH"
@@ -180,6 +178,7 @@ eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_CURLRC=1
 export PATH="/home/users/tyler.heaton/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH="$HOME/.local/share/coursier/bin:$PATH"
 alias vtags='python $HOME/.vtags-3.01/vtags.py'
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8

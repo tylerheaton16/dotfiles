@@ -21,6 +21,9 @@ fi
 if [ ! -d "$HOME/.config/nvim/lua" ]; then
     mkdir $HOME/.config/nvim/lua
 fi
+if [ ! -d "$HOME/.config/nvim/after/syntax" ]; then
+    mkdir -p $HOME/.config/nvim/after/syntax
+fi
 
 if [ ! -f $HOME/nvim.appimage ]; then
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -54,10 +57,18 @@ if [ -e $HOME/.config/nvim/lua/plugins.lua ]; then
      ln -s $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
 fi
 
-#Copy over treesitter.lua
+#Copy over treesiter.lua
 if [ -e $HOME/.config/nvim/lua/treesitter.lua ]; then
      mv $HOME/.config/nvim/lua/treesitter.lua $HOME/$BACKUP/.treesitter.lua_bak
      ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
  else
      ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
+fi
+
+#Copy over fugitive.lua
+if [ -e $HOME/.config/nvim/after/syntax/fugitive.lua ]; then
+     mv $HOME/.config/nvim/after/syntax/fugitive.lua $HOME/$BACKUP/.fugitive.lua_bak
+     ln -s $HOME/dotfiles/.fugitive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
+ else
+     ln -s $HOME/dotfiles/.fugutive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
 fi

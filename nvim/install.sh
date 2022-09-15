@@ -44,31 +44,59 @@ fi
 #symlinking .nvim
 if [ -e $HOME/.config/nvim/init.lua ]; then
      mv $HOME/.config/nvim/init.lua $HOME/$BACKUP/.init.lua_bak
-     ln -s $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
+     ln -sf $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
  else
-     ln -s $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
+     ln -sf $HOME/dotfiles/.init.lua $HOME/.config/nvim/init.lua
 fi
 
 #Copy over plugins.lua
 if [ -e $HOME/.config/nvim/lua/plugins.lua ]; then
      mv $HOME/.config/nvim/lua/plugins.lua $HOME/$BACKUP/.plugins.lua_bak
-     ln -s $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
+     ln -sf $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
  else
-     ln -s $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
+     ln -sf $HOME/dotfiles/.plugins.lua $HOME/.config/nvim/lua/plugins.lua
 fi
 
 #Copy over treesiter.lua
 if [ -e $HOME/.config/nvim/lua/treesitter.lua ]; then
      mv $HOME/.config/nvim/lua/treesitter.lua $HOME/$BACKUP/.treesitter.lua_bak
-     ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
+     ln -sf $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
  else
-     ln -s $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
+     ln -sf $HOME/dotfiles/.treesitter.lua $HOME/.config/nvim/lua/treesitter.lua
+fi
+
+if [ -e $HOME/.config/nvim/lua/nvim-cmp.lua ]; then
+     mv $HOME/.config/nvim/lua/nvim-cmp.lua $HOME/$BACKUP/.nvim-cmp.lua_bak
+     ln -sf $HOME/dotfiles/.nvim-cmp.lua $HOME/.config/nvim/lua/nvim-cmp.lua
+ else
+     ln -sf $HOME/dotfiles/.nvim-cmp.lua $HOME/.config/nvim/lua/nvim-cmp.lua
+fi
+
+if [ -e $HOME/.config/nvim/lua/lsp.lua ]; then
+     mv $HOME/.config/nvim/lua/lsp.lua $HOME/$BACKUP/.lsp.lua_bak
+     ln -sf $HOME/dotfiles/.lsp.lua $HOME/.config/nvim/lua/lsp.lua
+ else
+     ln -sf $HOME/dotfiles/.lsp.lua $HOME/.config/nvim/lua/lsp.lua
+fi
+
+if [ -e $HOME/.config/nvim/lua/vtags.lua ]; then
+     mv $HOME/.config/nvim/lua/vtags.lua $HOME/$BACKUP/.vtags.lua_bak
+     ln -sf $HOME/dotfiles/.vtags.lua $HOME/.config/nvim/lua/vtags.lua
+ else
+     ln -sf $HOME/dotfiles/.vtags.lua $HOME/.config/nvim/lua/vtags.lua
 fi
 
 #Copy over fugitive.lua
 if [ -e $HOME/.config/nvim/after/syntax/fugitive.lua ]; then
      mv $HOME/.config/nvim/after/syntax/fugitive.lua $HOME/$BACKUP/.fugitive.lua_bak
-     ln -s $HOME/dotfiles/.fugitive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
+     ln -sf $HOME/dotfiles/.fugitive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
  else
-     ln -s $HOME/dotfiles/.fugutive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
+     ln -sf $HOME/dotfiles/.fugitive.lua $HOME/.config/nvim/after/syntax/fugitive.lua
+fi
+#Copy over git.lua
+if [ -e $HOME/.config/nvim/after/syntax/git.lua ]; then
+     mv $HOME/.config/nvim/after/syntax/git.lua $HOME/$BACKUP/.git.lua_bak
+     ln -sf $HOME/dotfiles/.git.lua $HOME/.config/nvim/after/syntax/git.lua
+ else
+     ln -sf $HOME/dotfiles/.git.lua $HOME/.config/nvim/after/syntax/git.lua
 fi

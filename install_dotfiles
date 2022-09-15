@@ -151,7 +151,7 @@ else
     ln -s $HOME/dotfiles/syntax $HOME/.vim/syntax
 fi
 
-vim +PlugInstall +qall
+#vim +PlugInstall +qall
 rm $HOME/.vim/plugged/vim256-color/colors/elda.vim
 ln -s $HOME/dotfiles/colorschemes/elda.vim $HOME/.vim/plugged/vim256-color/colors/elda.vim
 # Remove the normal mode Comment bindings

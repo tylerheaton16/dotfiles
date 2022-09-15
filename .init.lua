@@ -1,11 +1,11 @@
 -- Neovim Configurations
 --
 require('plugins')
-require('treesitter')
 
-local cmd = vim.cmd -- shorthand for the vim.cmd('cd') calls
 local fn = vim.fn -- shorthand for fn.bufnr() calls
 local g = vim.g -- table for the global variables
+
+vim.opt_global.shortmess:remove("F")
 
 -- vim.g   : let
 -- vim.opt : global options
@@ -29,15 +29,38 @@ local function opt(scope, key, value)
     end
 end
 
+function set_ft(events, ft_list, ft, ft_cmd)
+
+    if (ft == nil) then
+        ft = ''
+    else
+        ft = [[set filetype=]] .. ft
+    end
+
+    if (ft_cmd == nil) then
+        ft_cmd = ''
+    end
+
+    cmd = ft .. ' ' .. ft_cmd
+
+    for _, item in pairs(ft_list) do
+        vim.api.nvim_create_autocmd(events, {
+            pattern = {item},
+            command = cmd,
+        })
+    end
+end
+
 -- Keybinds Updates
 g.mapleader = " "
-g.maplocalleader = " " 
+g.maplocalleader = " "
 
 nmap("<leader>ev", ":vsplit $MYVIMRC <CR>")
 nmap("<leader>vr", ":source $MYVIMRC <CR>")
 nmap("<leader>eb", ":vsplit $HOME/.bashrc <CR>")
 nmap("<leader>bn", ":bn <CR>")
 nmap("<leader>bp", ":bp <CR>")
+nmap("<leader>bb", ":tab ball <CR>")
 nmap("<leader>q",  ":qa! <CR>")
 nmap("<leader>wh", "<C-w>h")
 nmap("<leader>wj", "<C-w>j")
@@ -69,6 +92,11 @@ nmap("<leader>ww", "<C-w>= <CR>")
 nmap("<leader>w-", ":sp <CR>")
 nmap("<leader>w/", ":vsp <CR>")
 
+-- Appends verilog and systemverilog together to work for vtags/verilog-autos
+local buf = {"BufRead", "BufNewFile"}
+local ft_vlog  = {"*.v", "*.vg", "*.vm", "*.sv", "*.vams", "*.f"}
+set_ft(buf, ft_vlog, "verilog_systemverilog.verilog.systemverilog", [[softtabstop=4 shiftwidth=4 textwidth=80]])
+
 -- Vim-Fugitive + vimbinds
 nmap("<leader>g",  ":Git")
 nmap("<leader>gl", ":Git log <CR>")
@@ -81,7 +109,7 @@ nmap("<leader>g",  ":Git <CR>")
 nmap("<leader>o",  ":only <CR>")
 nmap("<leader>gdh",":diffget //2 <CR>")
 nmap("<leader>gdl",":diffget //3 <CR>")
-cmd([[autocmd FileType git setlocal foldmethod=syntax]])
+set_ft({"FileType"}, {"git"}, nil, [[setlocal foldmethod=syntax]])
 
 -- tmux / vimux config
 nmap("<leader>vp", ":VimuxPromptCommand<CR>")
@@ -96,21 +124,22 @@ nmap("<silent> <leader>wk", "TmuxNavigateUp <CR>")
 nmap("<silent> <leader>wl", "TmuxNavigateRight <CR>")
 
 -- fzf Config
-cmd[[let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }]]
+vim.cmd[[let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }]]
 
--- Vim Table - ReSt Support 
-cmd[[let g:table_mode_corner_corner='+']]
-cmd[[let g:table_mode_header_fillchar='=']]
+-- Vim Table - ReSt Support
+vim.cmd[[let g:table_mode_corner_corner='+']]
+vim.cmd[[let g:table_mode_header_fillchar='=']]
 
 -- File Finder Commands
+nmap("<leader>fff", ":Files")
 nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
 nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 
 -- airline themes
-cmd[[let g:airline_powerline_fonts=1]]
-cmd[[let g:airline_theme='deus']]
+vim.cmd[[let g:airline_powerline_fonts=1]]
+vim.cmd[[let g:airline_theme='deus']]
 
 -- Global Settings
 --opt("g", "python_highlight_all", 1)
@@ -122,10 +151,10 @@ vim.opt.visualbell = true
 
 opt("o", "termguicolors", true)
 opt("o", "ttimeoutlen", 5)
-cmd([[filetype plugin indent on]])
-cmd([[set noea "set equalalways]])
-cmd([[set backspace=indent,eol,start]])
-cmd([[set updatetime=1000]])
+vim.cmd([[filetype plugin indent on]])
+vim.cmd([[set noea "set equalalways]])
+vim.cmd([[set backspace=indent,eol,start]])
+vim.cmd([[set updatetime=1000]])
 opt("o", "splitright", true)
 opt("o", "foldmethod", "manual")
 opt("o", "virtualedit", "all")
@@ -147,11 +176,11 @@ opt("b", "shiftwidth", indent)
 opt("w", "number", true)
 opt("w", "relativenumber", true)
 opt("b", "formatoptions", "crot")
-cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
-cmd([[highlight search ctermbg = green]])
+vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
+vim.cmd([[highlight search ctermbg = green]])
 --opt("o", "noshowmode", "true")
 
-cmd([[highlight search guibg = green]])
+vim.cmd([[highlight search guibg = green]])
 nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
 
 		--bold
@@ -168,9 +197,10 @@ nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
 		--nocombine	override attributes instead of combining them
 		--NONE		no attributes used (used to reset it)
 
-cmd("set rtp+=~/dotfiles/myhelp/")
-cmd("set rtp+=~/.fzf/")
-cmd([[colorscheme terafox]])
+vim.cmd("set rtp+=~/dotfiles/myhelp/")
+vim.cmd("set rtp+=~/.fzf/")
+vim.cmd([[colorscheme terafox]])
+
 
 require('nightfox').setup({
     options = {
@@ -202,3 +232,22 @@ require('nightfox').setup({
         },
     }
 })
+-- LSP settings --
+cfg = {}
+-- Have to add lsp_signature since it sits in /opt
+vim.cmd([[packadd! lsp_signature.nvim]])
+require "lsp_signature".setup(cfg)
+vim.opt_global.shortmess:remove("F")
+vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
+
+-- Vtags settings --
+-- Can't get to work with out of bounds issue --
+--vim.g.python3_host_prog="/share/snorlax/scratch/tyler.heaton/basalisc_p2/rambus-ddr4/Galois_ddr4_beh_phy_PN3258_1_03_03112022/.venv/bin/python"
+--vim.cmd('source ~/.vtags-3.01/vtags_vim_api.vim')
+
+-- Tagbar Setup --
+vim.g.tagbar_ctags_bin="/home/users/tim/.local/mybin/ctags"
+
+-- plugins --
+require('treesitter')
+require('vtags')

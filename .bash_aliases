@@ -119,43 +119,6 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color 
 
 
 set -o vi
-if [ ${USER} == "tylerheaton16" ]; then
-  #archey3 --color=cyan
-  export PATH="$HOME/AUR/matlab/bin:$PATH"
-  export PATH="$HOME/.local/rouge/bin/:$PATH"
-  #source /home/tim/.fzf/shell/completion.bash
-  export PATH="$HOME/.fzf/bin/:$PATH"
-  #source ~/.colors
-  #source ~/.functions.sh
-  export LESSOPEN="| $HOME/.local/rouge/bin/rougify %s 2> /dev/null"                        
-  export LESS="-R"
-  export EDITOR="/usr/bin/vim"
-  export VISUAL="/usr/bin/vim"
-fi
-
-# TSS Only
-if [[ ${USER} == "tylerheaton16" ]]
- then
-  alias vtags='python $HOME/.vtags-3.01/vtags.py'
-  export PATH="$HOME/.fzf/bin:$PATH"
-  export PATH="$HOME/.linuxbrew/opt/perl/bin:$PATH"
-  export PATH="$HOME/.linuxbrew/opt/texlive/texlive/bin/x86_64-linux:$PATH"
-  export PATH="$HOME/.linuxbrew/bin:$PATH"
-  export PATH="$HOME/.linuxbrew/sbin:$PATH"
-  export PATH="$HOME/.rxvt-unicode-9.22/bin:$PATH"
-  export PATH="$HOME/timh_chipyard/verilator/bin:$PATH"
-  export PATH="$HOME/rocket-tools/bin:$PATH"
-  export HOMEBREW_TEMP=$HOME/.linuxbrew_tmp
-  export EDITOR="$HOME/.linuxbrew/bin/vim"
-  export VISUAL="$HOME/.linuxbrew/bin/vim"
-  export TMUX_TMPDIR=$HOME/.linuxbrew_tmp
-  unset TMOUT
-  export CDPATH="$HOME/timh_build3a/socta1_chipyard/generators:$CDPATH"
-  # The order of these 2 commands matters
-  [[ -r "/home/tim.heaton/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/tim.heaton/.linuxbrew/etc/profile.d/bash_completion.sh"
-  source $HOME/.fzf/shell/completion.bash
-
-fi
 
 
 # Sets it so that creating more terminals in i3 does not cause text to weirdly rap around the window
@@ -166,7 +129,7 @@ git_branch() {
       git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(tput sgr0)\] $BPurple\$(git_branch)$Color_Off "
+export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(tput sgr0)\] $BBlue\$(git_branch)$Color_Off "
 
 
 if [ ${USER} == heaton.49 ]; then
@@ -178,9 +141,9 @@ eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_CURLRC=1
 export PATH="/home/users/tyler.heaton/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
-export PATH="$HOME/.local/share/coursier/bin:$PATH"
-export PATH="/home/users/tim/.linuxbrew/bin:$PATH"
-export PATH="/home/users/tim/.linuxbrew/sbin:$PATH"
-alias vtags='python $HOME/.vtags-3.01/vtags.py'
+export PATH="$HOME/.local/share/coursier/bin/:$PATH"
+export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
+alias vtags='/usr/bin/python $HOME/.vtags-3.01/vtags.py'
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export LANG=en_IN.UTF-8

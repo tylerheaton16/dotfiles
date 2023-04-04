@@ -28,10 +28,28 @@ return require('packer').startup(function(use)
   use 'kshenoy/vim-signature'
   use 'vim-scripts/tcl.vim--smithfield'
   use 'tpope/vim-vinegar'
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+--  use 'vim-airline/vim-airline'
+--  use 'vim-airline/vim-airline-themes'
   use 'dhruvasagar/vim-table-mode'
-
+  use 'sharkdp/fd'
+  use 'itchyny/lightline.vim'
+  use 'willchao612/vim-diagon'
+  use 'm4xshen/autoclose.nvim'
+  use({
+      'shumphrey/fugitive-gitlab.vim',
+      requires = 'tpope/vim-fugitive'
+      })
+  use({
+        "aaronhallaert/advanced-git-search.nvim",
+        config = function()
+            require("telescope").load_extension("advanced_git_search")
+        end,
+        requires = {
+            "nvim-telescope/telescope.nvim",
+            -- to show diff splits and open commits in browser
+            "tpope/vim-fugitive",
+        },
+    })
   -- Setting up LSP
   use 'nvim-lua/plenary.nvim'
   use({"hrsh7th/nvim-cmp",
@@ -53,21 +71,47 @@ return require('packer').startup(function(use)
     use({'rafamadriz/friendly-snippets', after = "nvim-cmp"})
 
     -- Common LSP Configurations
-    use({
-        "williamboman/nvim-lsp-installer",
-        {
-            'neovim/nvim-lspconfig',
-            after = {
-                "cmp-nvim-lsp",
-            },
-            config = function()
-                require("lsp")
-            end
-        }
-    })
-
+    use{
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
+    --use({
+    --    "williamboman/nvim-lsp-installer",
+    --    {
+    --        'neovim/nvim-lspconfig',
+    --        after = {
+    --            "cmp-nvim-lsp",
+    --        },
+    --        config = function()
+    --            require("lsp")
+    --        end
+    --    }
+    --})
   use({'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" }})
+  use({
+  "jackMort/ChatGPT.nvim",
+   config = function()
+     require("chatgpt").setup()
+   end,
+   requires = {
+     "MunifTanjim/nui.nvim",
+     "nvim-lua/plenary.nvim",
+     "nvim-telescope/telescope.nvim"
+      }
+    })
   use 'nvim-treesitter/nvim-treesitter'
   use 'p00f/nvim-ts-rainbow'
+  use({
+      "rcarriga/nvim-notify",
+      config = function()
+          local notify = require("notify")
+          notify.setup({
+              timeout = 3000,
+              stages = "fade",
+          })
+          vim.notify = notify
+      end,
+  })
 
 end)

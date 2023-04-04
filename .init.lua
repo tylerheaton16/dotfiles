@@ -136,10 +136,16 @@ nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
 nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
+nmap("<leader>gr", "<cmd>Telescope advanced_git_search checkout_reflog<cr>")
+nmap("<leader>gf", "<cmd>Telescope advanced_git_search diff_commit_file<cr>")
+nmap("<leader>gc", "<cmd>Telescope advanced_git_search diff_commit_line<cr>")
 
 -- airline themes
 vim.cmd[[let g:airline_powerline_fonts=1]]
 vim.cmd[[let g:airline_theme='deus']]
+
+--vim-diagon settings
+--vim.cmd[[let g:diagon_use_echo=1]]
 
 -- Global Settings
 --opt("g", "python_highlight_all", 1)
@@ -197,9 +203,17 @@ nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
 		--nocombine	override attributes instead of combining them
 		--NONE		no attributes used (used to reset it)
 
-vim.cmd("set rtp+=~/dotfiles/myhelp/")
-vim.cmd("set rtp+=~/.fzf/")
+--vim.cmd("set rtp+=~/dotfiles/myhelp/")
+vim.cmd("set rtp+=~/.fzf")
 vim.cmd([[colorscheme terafox]])
+
+-- file not edited by Vim  updates on own
+vim.cmd([[set autoread]])
+vim.cmd([[au CursorHold * checktime]])
+vim.cmd([[au FocusGained,BufEnter * :checktime]])
+-- fugitive-gitlab
+--vim.g.fugitive_gitlab_domains = {'https://gitlab-ext.galois.com', 'https://gitlab-ext'}
+--vim.g.gitlab_api_keys = {['gitlab-ext.galois.com'] = 'FugitiveToken'}
 
 
 require('nightfox').setup({
@@ -247,7 +261,20 @@ vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 
 -- Tagbar Setup --
 vim.g.tagbar_ctags_bin="/home/users/tim/.local/mybin/ctags"
-
+vim.g['lightline'] = {
+	colorscheme = 'PaperColor'
+}
 -- plugins --
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+require("mason-lspconfig").setup()
+require("autoclose").setup()
 require('treesitter')
 require('vtags')

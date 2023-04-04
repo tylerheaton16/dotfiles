@@ -108,12 +108,19 @@ alias vimlog="vim -c \":Git log\" -c \":only\""
 #################PATH Updates##############
 
 # Configures fuzzy finder 
+## -- Terafox FZF color scheme below -- #
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
+    --color=fg:#5a93aa,bg:#152528,hl:#5a93aa 
+    --color=fg+:#00bfe5,bg+:#152528,hl+:#00bfe5 
+    --color=info:#8eb2af,prompt:#eb746b,pointer:#000000 
+    --color=marker:#87ff00,spinner:#b97490,header:#345563
+    --color=preview-fg:#5a93aa,preview-bg:#152528'
 
-export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color fg:#00bfe5,fg+:#00bfe5,bg:#000000,preview-bg:#000000,border:#00bfe5 --preview "
-                                                                 [[ $(file --mime {}) =~ binary ]] &&
-                                                                    echo {} is a binary file ||
-                                                                   (rougify highlight {} ||
-                                                                     cat {}) 2> /dev/null | head -500"'
+#export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border rounded --color fg:#00bfe5,fg+:#00bfe5,bg:#000000,preview-bg:#000000,border:#00bfe5 --preview "
+#                                                                 [[ $(file --mime {}) =~ binary ]] &&
+#                                                                    echo {} is a binary file ||
+#                                                                   (rougify highlight {} ||
+#                                                                     cat {}) 2> /dev/null | head -500"'
 
 
 
@@ -139,11 +146,13 @@ fi
 eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_NO_ENV_FILTERING=1
 #export HOMEBREW_CURLRC=1
-export PATH="/home/users/tyler.heaton/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
+export PATH="$HOME/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/share/coursier/bin/:$PATH"
-export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
+#export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
 alias vtags='/usr/bin/python $HOME/.vtags-3.01/vtags.py'
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_IN.UTF-8
+export EDITOR="${HOME}/.local/bin/nvim"
+export OPENAI_API_KEY="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" 

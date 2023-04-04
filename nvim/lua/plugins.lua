@@ -5,7 +5,12 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Packages
-  use 'EdenEast/nightfox.nvim'
+  use ({
+      "EdenEast/nightfox.nvim",
+      config = function()
+          require ("config.nightfox")
+      end
+      })
   use 'folke/tokyonight.nvim'
 
 -- From vimrc
@@ -54,7 +59,7 @@ return require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use({"hrsh7th/nvim-cmp",
         config = function()
-            require("nvim-cmp")
+            require("config.nvim-cmp")
         end,
     })
     use({'hrsh7th/cmp-nvim-lsp', after = "nvim-cmp"})
@@ -64,43 +69,56 @@ return require('packer').startup(function(use)
     --use({'hrsh7th/cmp-nvim-lsp-signature-help', after = "nvim-cmp"})
     use({'ray-x/lsp_signature.nvim', after = "nvim-cmp"})
 
-    use({'L3MON4D3/LuaSnip', after = "nvim-cmp"})
-    use({'saadparwaiz1/cmp_luasnip', after = "nvim-cmp"})
     use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+    --use({'L3MON4D3/LuaSnip', 
+    --version = "<CurrentMajor>.*",
+    --after = "nvim-cmp"})
+    use({'saadparwaiz1/cmp_luasnip', after = "nvim-cmp"})
 
     use({'rafamadriz/friendly-snippets', after = "nvim-cmp"})
 
     -- Common LSP Configurations
-    use{
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    }
-    --use({
-    --    "williamboman/nvim-lsp-installer",
-    --    {
-    --        'neovim/nvim-lspconfig',
-    --        after = {
-    --            "cmp-nvim-lsp",
-    --        },
-    --        config = function()
-    --            require("lsp")
-    --        end
-    --    }
-    --})
-  use({'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" }})
-  use({
-  "jackMort/ChatGPT.nvim",
-   config = function()
-     require("chatgpt").setup()
-   end,
-   requires = {
-     "MunifTanjim/nui.nvim",
-     "nvim-lua/plenary.nvim",
-     "nvim-telescope/telescope.nvim"
-      }
+    --use{
+    --    "williamboman/mason.nvim",
+    --    "williamboman/mason-lspconfig.nvim",
+    --    "neovim/nvim-lspconfig",
+    --    after = {
+    --        "cmp-nvim-lsp",
+    --    },
+    --    config = function()
+    --        require("lsp")
+    --    end
+    --}
+    use({
+        "williamboman/nvim-lsp-installer",
+        {
+            'neovim/nvim-lspconfig',
+            after = {
+                "cmp-nvim-lsp",
+            },
+            config = function()
+                require("config.lsp")
+            end
+        }
     })
-  use 'nvim-treesitter/nvim-treesitter'
+  use({
+      "nvim-telescope/telescope.nvim", 
+      requires = { "nvim-lua/plenary.nvim" },
+      config = function()
+      require("telescope")
+      end,
+      })
+  use {
+      'nvim-treesitter/nvim-treesitter',
+      config = function()
+          require("config.treesitter")
+      end,
+      run = function()
+      local ts_update = require('config.nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+      end,
+     -- runs TSUpdate after install
+  }
   use 'p00f/nvim-ts-rainbow'
   use({
       "rcarriga/nvim-notify",

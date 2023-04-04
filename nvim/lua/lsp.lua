@@ -1,10 +1,11 @@
 -- LSP configurations
 
+--require("mason-lspconfig").setup()
+require("nvim-lsp-installer").setup {}
 local lspconfig = require("lspconfig")
 
 -- Adds cmp as a capability to the lsp autocompletion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

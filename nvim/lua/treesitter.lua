@@ -18,6 +18,7 @@ require("nvim-treesitter.configs").setup({
         "scala",
         "verilog",
         "yaml",
+        "vim",
         --"devicetree",
     },
     highlight = { enable = true },

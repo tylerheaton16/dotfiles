@@ -1,5 +1,12 @@
 -- Neovim Configurations
 --
+--
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+      vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+      vim.api.nvim_command("packadd packer.nvim")
+end
+
 require('plugins')
 
 local fn = vim.fn -- shorthand for fn.bufnr() calls
@@ -216,36 +223,6 @@ vim.cmd([[au FocusGained,BufEnter * :checktime]])
 --vim.g.gitlab_api_keys = {['gitlab-ext.galois.com'] = 'FugitiveToken'}
 
 
-require('nightfox').setup({
-    options = {
-        --Compiled file's destination location
-        compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-        compile_file_suffix = "_compiled", -- Compiled file suffix
-        transparent = false,    -- Disable setting background
-        terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-        dim_inactive = false,   -- Non focused panes set to alternative background
-        styles = {              -- Style to be applied to different syntax groups
-            comments = "NONE",    -- Value is any valid attr-list value `:help attr-list`
-            conditionals = "NONE",
-            constants = "NONE",
-            functions = "NONE",
-            keywords = "NONE",
-            numbers = "NONE",
-            operators = "NONE",
-            strings = "NONE",
-            types = "NONE",
-            variables = "NONE",
-        },
-        inverse = {             -- Inverse highlight for different types
-            match_paren = true,
-            visual = false,
-            search = false,
-        },
-        modules = {             -- List of various plugins and additional options
-        -- ...
-        },
-    }
-})
 -- LSP settings --
 cfg = {}
 -- Have to add lsp_signature since it sits in /opt
@@ -265,16 +242,15 @@ vim.g['lightline'] = {
 	colorscheme = 'PaperColor'
 }
 -- plugins --
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-require("mason-lspconfig").setup()
+--require("mason").setup({
+--    ui = {
+--        icons = {
+--            package_installed = "✓",
+--            package_pending = "➜",
+--            package_uninstalled = "✗"
+--        }
+--    }
+--})
 require("autoclose").setup()
-require('treesitter')
-require('vtags')
+require('config.treesitter')
+require('config.vtags')

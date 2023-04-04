@@ -155,4 +155,3 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_IN.UTF-8
 export EDITOR="${HOME}/.local/bin/nvim"
-export OPENAI_API_KEY="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" 

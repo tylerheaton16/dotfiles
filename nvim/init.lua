@@ -1,13 +1,24 @@
 -- Neovim Configurations
 --
 --
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-      vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-      vim.api.nvim_command("packadd packer.nvim")
-end
+--local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+--if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+--      vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+--      vim.api.nvim_command("packadd packer.nvim")
+--end
 
-require('plugins')
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
 local fn = vim.fn -- shorthand for fn.bufnr() calls
 local g = vim.g -- table for the global variables
@@ -221,7 +232,6 @@ vim.cmd("set rtp+=~/dotfiles/myhelp/")
 vim.cmd("set rtp+=~/.fzf")
 
 --nightfox colorschemes
-vim.cmd([[colorscheme terafox]])
 --vim.cmd([[colorscheme nightfox]])
 
 -- file not edited by Vim  updates on own
@@ -233,11 +243,6 @@ vim.cmd([[au FocusGained,BufEnter * :checktime]])
 --vim.g.gitlab_api_keys = {['gitlab-ext.galois.com'] = 'FugitiveToken'}
 
 -- Must happen after colorscheme or gets overridden
-require("indent_blankline").setup {
-    show_end_of_line = true,
-    show_current_context = true,
-    show_current_context_start = true,
-}
 vim.opt.list = true
 vim.opt.listchars = {
     -- Place a '#' in the last column when 'wrap' is off and the line continues beyond the right of the screen
@@ -256,8 +261,8 @@ vim.opt.listchars = {
 -- LSP settings --
 cfg = {}
 -- Have to add lsp_signature since it sits in /opt
-vim.cmd([[packadd! lsp_signature.nvim]])
-require "lsp_signature".setup(cfg)
+--vim.cmd([[packadd! lsp_signature.nvim]])
+--require "lsp_signature".setup(cfg)
 vim.opt_global.shortmess:remove("F")
 vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 
@@ -271,7 +276,45 @@ vim.g.tagbar_ctags_bin="/home/users/tim/.local/mybin/ctags"
 vim.g['lightline'] = {
 	colorscheme = 'PaperColor'
 }
+require("lazy").setup({
+    spec = {
+        { import = "plugins"},
+    },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
+        notify = false,
+    },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "2html_plugin",
+                "getscript",
+                "getscriptPlugin",
+                "gzip",
+                "logipat",
+                "matchit",
+                "matchparen",
+                "netrw",
+                "netrwFileHandlers",
+                "netrwPlugin",
+                "netrwSettings",
+                "rrhelper",
+                "spellfile_plugin",
+                "tar",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "vimball",
+                "vimballPlugin",
+                "zip",
+                "zipPlugin",
+            },
+        },
+    },
+})
 -- plugins --
-require('telescope').load_extension('env')
 require('config.vtags')
---vim.cmd[[autocmd BufRead * lua require('config.vtags')]]
+--vim.cmd[[autocmd BufReadPost * lua require('config.vtags')]]

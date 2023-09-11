@@ -1,6 +1,5 @@
 -- LSP configurations
 
---require("mason-lspconfig").setup()
 require("nvim-lsp-installer").setup {}
 local lspconfig = require("lspconfig")
 
@@ -18,8 +17,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local function custom_lsp_attach(client, bufnr)
 
+local function custom_lsp_attach(client, bufnr)
     local ts_builtin = require("telescope.builtin")
 
     local function map(mode, l, r, opts)
@@ -33,10 +32,9 @@ local function custom_lsp_attach(client, bufnr)
         silent = true,
     }
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
     map("n", "gla", vim.lsp.buf.code_action, opts)
-    map("v", "gla", vim.lsp.buf.range_code_action, opts)
     map("n", "gld", ts_builtin.lsp_definitions, opts)
     map("n", "glD", vim.lsp.buf.declaration, opts)
     map("n", "glh", vim.lsp.buf.hover, opts)
@@ -58,22 +56,53 @@ local function custom_lsp_attach(client, bufnr)
     map("n", "glx", function()
         vim.lsp.stop_client(vim.lsp.get_active_clients())
     end, opts)
-    map("n", "glf", vim.lsp.buf.formatting, opts)
+    --map("n", "glf", vim.lsp.buf.formatting, opts)
+    map("n", "glf", function()
+        vim.lsp.buf.format({ async = true })
+    end, opts)
+end
+local configs = require("lspconfig/configs")
+
+---------------------setup------------------------------
+
+if not lspconfig.lua_ls then
+    configs.lua_ls = {
+        default_config = {
+            cmd = { "lua-language-server" },
+            filetypes = { "lua" },
+            root_dir = lspconfig.util.root_pattern(".git"),
+            settings = {},
+        },
+    };
 end
 
+--nvim_lsp.clangd.setup({
+--    cmd = { "clangd", "--background-index", "--clang-tidy", "--suggest-missing-includes", "--header-insertion=iwyu" },
+--    filetypes = { "c", "cpp" },
+--    root_dir = nvim_lsp.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+--    init_options = {
+--        clangdFileStatus = true,
+--        usePlaceholders = true,
+--        completeUnimported = true,
+--        semanticHighlighting = true,
+--    }
+--})
+
+-- ADD SERVERS HERE TO GET ATTACHED
 local servers = {
-    
+    "lua_ls",
+    --"clangd"
 }
 
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
-    on_attach = custom_lsp_attach,
-    capabilities = capabilities,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  })
+    lspconfig[lsp].setup({
+        on_attach = custom_lsp_attach,
+        capabilities = capabilities,
+        flags = {
+            -- This will be the default in neovim 0.7+
+            debounce_text_changes = 150,
+        }
+    })
 end
 
 -- nvim-metals Setup
@@ -85,9 +114,11 @@ metals_config.on_attach = custom_lsp_attach
 metals_config.settings = {
     showImplicitArguments = true,
     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+    --serverVersion = "0.11.11"
+    --serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT"
 }
 metals_config.root_patterns = { "build.sbt", "build.sc" }
-
+--
 -- Find the last directory which contains one of the files/directories in 'metals_config.root_patterns'
 metals_config.find_root_dir = function(patterns, startpath)
     local root_dir = nil
@@ -108,7 +139,7 @@ metals_config.capabilities = capabilities
 
 local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "scala,sbt",
+    pattern = {"sbt", "scala"},
     callback = function()
         metals.initialize_or_attach(metals_config)
     end,

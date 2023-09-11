@@ -10,7 +10,7 @@ require("nvim-treesitter.configs").setup({
 --        "comment",
 --        "cpp",
         "json",
---        "latex",
+     --        "latex",
         "lua",
         "python",
         "regex",

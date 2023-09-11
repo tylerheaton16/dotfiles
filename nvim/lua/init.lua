@@ -102,13 +102,16 @@ nmap("<leader>w/", ":vsp <CR>")
 -- Appends verilog and systemverilog together to work for vtags/verilog-autos
 local buf = {"BufRead", "BufNewFile"}
 local ft_vlog  = {"*.v", "*.vg", "*.vm", "*.sv", "*.vams", "*.f"}
-set_ft(buf, ft_vlog, "verilog_systemverilog.verilog.systemverilog", [[softtabstop=4 shiftwidth=4 textwidth=80]])
+--set_ft(buf, ft_vlog, "verilog_systemverilog.verilog.systemverilog", [[softtabstop=4 shiftwidth=4 textwidth=80]])
+set_ft(buf, ft_vlog, "verilog_systemverilog", [[tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80]])
+--set_ft({"FileType"}, {"verilog_systemverilog"}, nil, [[setlocal foldmethod=manual]])
 
 -- Vim-Fugitive + vimbinds
 nmap("<leader>g",  ":Git")
 nmap("<leader>gl", ":Git log <CR>")
 nmap("<leader>gp", ":Git log -p % <CR>")
 nmap("<leader>gd", ":Gvdiffsplit!")
+nmap("<leader>gD", ":Git diff master % <CR>")
 nmap("<leader>gb", ":Git blame")
 nmap("<leader>gs", ":Git status <CR>")
 nmap("<leader>gw", ":Gwrite <CR>")
@@ -140,6 +143,7 @@ vim.cmd[[let g:table_mode_header_fillchar='=']]
 -- File Finder Commands
 nmap("<leader>fff", ":Files")
 nmap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nmap("<leader>fe", "<cmd>Telescope env<cr>")
 nmap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nmap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
@@ -161,6 +165,8 @@ vim.cmd[[let g:airline_theme='deus']]
 
 -- nvim Configuration
 vim.opt.visualbell = true
+-- need cmdheight = 1 or searching makes me hit enter all the time
+vim.opt.cmdheight = 1
 
 opt("o", "termguicolors", true)
 opt("o", "ttimeoutlen", 5)
@@ -176,6 +182,7 @@ opt("w", "wrap", true)
 opt("o", "ttyfast",  true)
 opt("o", "modelines", 0)
 
+
 -- Search settings
 opt("o", "hlsearch", true)
 opt("o", "incsearch", true)
@@ -189,30 +196,33 @@ opt("b", "shiftwidth", indent)
 opt("w", "number", true)
 opt("w", "relativenumber", true)
 opt("b", "formatoptions", "crot")
+
+
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[highlight search ctermbg = green]])
 --opt("o", "noshowmode", "true")
-
 vim.cmd([[highlight search guibg = green]])
 nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
+        --bold
+        --underline
+        --underlineline	double underline
+        --undercurl	curly underline
+        --underdot	dotted underline
+        --underdash	dashed underline
+        --strikethrough
+        --reverse
+        --inverse		same as reverse
+        --italic
+        --standout
+        --nocombine	override attributes instead of combining them
+        --NONE		no attributes used (used to reset it)
 
-		--bold
-		--underline
-		--underlineline	double underline
-		--undercurl	curly underline
-		--underdot	dotted underline
-		--underdash	dashed underline
-		--strikethrough
-		--reverse
-		--inverse		same as reverse
-		--italic
-		--standout
-		--nocombine	override attributes instead of combining them
-		--NONE		no attributes used (used to reset it)
-
---vim.cmd("set rtp+=~/dotfiles/myhelp/")
+vim.cmd("set rtp+=~/dotfiles/myhelp/")
 vim.cmd("set rtp+=~/.fzf")
+
+--nightfox colorschemes
 vim.cmd([[colorscheme terafox]])
+--vim.cmd([[colorscheme nightfox]])
 
 -- file not edited by Vim  updates on own
 vim.cmd([[set autoread]])
@@ -222,6 +232,26 @@ vim.cmd([[au FocusGained,BufEnter * :checktime]])
 --vim.g.fugitive_gitlab_domains = {'https://gitlab-ext.galois.com', 'https://gitlab-ext'}
 --vim.g.gitlab_api_keys = {['gitlab-ext.galois.com'] = 'FugitiveToken'}
 
+-- Must happen after colorscheme or gets overridden
+require("indent_blankline").setup {
+    show_end_of_line = true,
+    show_current_context = true,
+    show_current_context_start = true,
+}
+vim.opt.list = true
+vim.opt.listchars = {
+    -- Place a '#' in the last column when 'wrap' is off and the line continues beyond the right of the screen
+    extends = "#",
+    -- Place a '#' in the first column when 'wrap' is off and there is text preceding the character visible in the
+    -- first column
+    precedes = "#",
+    -- Show non-breaking space characters
+    nbsp = "¬",
+    -- Show tabs
+    tab = ".→",
+    -- Show trailing spaces
+    trail = "◊",
+}
 
 -- LSP settings --
 cfg = {}
@@ -242,15 +272,6 @@ vim.g['lightline'] = {
 	colorscheme = 'PaperColor'
 }
 -- plugins --
---require("mason").setup({
---    ui = {
---        icons = {
---            package_installed = "✓",
---            package_pending = "➜",
---            package_uninstalled = "✗"
---        }
---    }
---})
-require("autoclose").setup()
-require('config.treesitter')
+require('telescope').load_extension('env')
 require('config.vtags')
+--vim.cmd[[autocmd BufRead * lua require('config.vtags')]]

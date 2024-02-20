@@ -88,9 +88,12 @@ nmap("<leader>ws", "<C-w>s")
 nmap("<leader>w/", "<C-w>v")
 nmap("<leader>wv", "<C-w>v")
 
+--barbar keybinds
+--nmap(":BufferClose", ":q")
+
 -- Tab movement in nvim
 nmap("tn", ":tabnew <CR>")
-nmap("tc", ":tabclose <CR>")
+nmap("tc", ":BufferClose <CR>")
 nmap("tN", ":tab sball <CR>")
 nmap("ts", ":tab split <CR>")
 nmap("<leader>1", "1gt")
@@ -121,7 +124,7 @@ set_ft(buf, ft_vlog, "verilog_systemverilog", [[tabstop=2 softtabstop=2 shiftwid
 nmap("<leader>g",  ":Git")
 nmap("<leader>gl", ":Git log <CR>")
 nmap("<leader>gp", ":Git log -p % <CR>")
-nmap("<leader>gd", ":Gvdiffsplit!")
+nmap("<leader>gd", ":Gvdiffsplit! <CR>")
 nmap("<leader>gD", ":Git diff master % <CR>")
 nmap("<leader>gb", ":Git blame")
 nmap("<leader>gs", ":Git status <CR>")
@@ -209,24 +212,12 @@ opt("w", "relativenumber", true)
 opt("b", "formatoptions", "crot")
 
 
+--vim.cmd([[autocmd BufWritePre * :%s/\s\+$//e)]]
 vim.cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
 vim.cmd([[highlight search ctermbg = green]])
 --opt("o", "noshowmode", "true")
 vim.cmd([[highlight search guibg = green]])
 nmap("<F5>", ":set norelativenumber! <CR> :set nonumber! <CR>")
-        --bold
-        --underline
-        --underlineline	double underline
-        --undercurl	curly underline
-        --underdot	dotted underline
-        --underdash	dashed underline
-        --strikethrough
-        --reverse
-        --inverse		same as reverse
-        --italic
-        --standout
-        --nocombine	override attributes instead of combining them
-        --NONE		no attributes used (used to reset it)
 
 vim.cmd("set rtp+=~/dotfiles/myhelp/")
 vim.cmd("set rtp+=~/.fzf")

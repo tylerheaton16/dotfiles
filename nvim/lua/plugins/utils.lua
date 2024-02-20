@@ -1,15 +1,35 @@
  return {
+    { "nvim-tree/nvim-web-devicons", lazy = true },
     -- Used often by other plugins
     { "nvim-lua/plenary.nvim", lazy = true },
     {
         "lukas-reineke/indent-blankline.nvim",
-        opts ={
-            show_end_of_line = true,
-            show_current_context = true,
-            show_current_context_start = true,
+        main = "ibl",
+        opts = {
+            scope = {
+                enabled = true,
+                show_start = true,
+                show_end = true,
+                --remove_blankline_trail = true,
+            },
+            indent = {
+                --uncomment if you want rainbows
+                --highlight = {
+                --    "RainbowOrange",
+                --},
+            },
         },
-        config = function()
-            require("indent_blankline").setup(opts)
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function(_, opts)
+            --uncomment if you want rainbows
+            --local hooks = require("ibl.hooks")
+            --hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+            --    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+            --end)
+
+            require("ibl").setup(opts)
         end,
     },
 
@@ -107,7 +127,11 @@
     {
         "m4xshen/autoclose.nvim",
         config = function()
-            require("autoclose").setup()
+            require("autoclose").setup({
+                options = {
+                    disabled_filetypes={"text", "verilog_systemverilog", "sdc"},
+                }
+            })
         end,
     },
     {

@@ -8,7 +8,7 @@ return{
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-nvim-lsp-signature-help",
-            "L3MON4D3/LuaSnip",
+            --"L3MON4D3/LuaSnip",
         },
         opts = function()
                 local has_words_before = function()

@@ -105,6 +105,9 @@ alias ......="cd ../../../"
 taskvim='vim -c "TW" -c "Calendar -view=year -split=horizontal -position=below -height=26"'
 alias vimgit="vim -c \":Git\" -c \":only\""
 alias vimlog="vim -c \":Git log\" -c \":only\""
+alias gs="git status"
+alias gb="git branch"
+alias gt="git stash list"
 #################PATH Updates##############
 
 # Configures fuzzy finder 

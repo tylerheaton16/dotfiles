@@ -15,9 +15,6 @@ source $DOTFILES_LIB
 if [ ! -d "$HOME/.local/share/nvim" ]; then
     mkdir $HOME/.local/share/nvim
 fi
-if [ ! -d "$HOME/.local/bin/nvim" ]; then
-    mkdir $HOME/.local/bin/nvim
-fi
 if [ ! -d "$HOME/.config/nvim" ]; then
     mkdir $HOME/.config/nvim
 fi

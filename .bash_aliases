@@ -98,6 +98,7 @@ alias grep='grep --color=yes'
 alias vimrc='vim $HOME/.vimrc'
 alias initlua='nvim $HOME/.config/nvim/init.lua'
 alias vim='nvim'
+alias ct='curl -O -L https://github.com/chipsalliance/chisel/releases/latest/download/chisel-template.scala'
 alias bashrc='vim $HOME/.bashrc'
 alias ..="cd ../"
 alias ....="cd ../../"

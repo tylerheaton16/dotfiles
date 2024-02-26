@@ -32,14 +32,41 @@
             require("ibl").setup(opts)
         end,
     },
-
+    {
+        "sustech-data/wildfire.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require("wildfire").setup()
+        end,
+    },
+    {"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        name = "lsp_lines.nvim",
+        --event = "VeryLazy",
+        --keys = {
+        --    {
+        --    "<leader>ctl",
+        --    function()
+        --        require("lsp_lines").toggle()
+        --    end,
+        --    desc = "Toggle lsp_lines",
+        --    },
+        --},
+        config = function()
+            require("lsp_lines").setup()
+            vim.diagnostic.config({virtual_text = false})
+        end,
+    },
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
         },
+        cmd = "Telescope",
         config = function()
-            require("telescope")
+            require('telescope').setup()
+            require('telescope').load_extension('fzf')
         end,
     },
     {
@@ -124,16 +151,16 @@
     {
         "willchao612/vim-diagon",
     },
-    {
-        "m4xshen/autoclose.nvim",
-        config = function()
-            require("autoclose").setup({
-                options = {
-                    disabled_filetypes={"text", "verilog_systemverilog", "sdc"},
-                }
-            })
-        end,
-    },
+    --{
+    --    "m4xshen/autoclose.nvim",
+    --    config = function()
+    --        require("autoclose").setup({
+    --            options = {
+    --                disabled_filetypes={"text", "verilog_systemverilog", "sdc", "scala"},
+    --            }
+    --        })
+    --    end,
+    --},
     {
         "shumphrey/fugitive-gitlab.vim",
         dependencies = {

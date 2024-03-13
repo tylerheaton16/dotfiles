@@ -165,6 +165,10 @@ nmap("<leader>gr", "<cmd>Telescope advanced_git_search checkout_reflog<cr>")
 nmap("<leader>gf", "<cmd>Telescope advanced_git_search diff_commit_file<cr>")
 nmap("<leader>gc", "<cmd>Telescope advanced_git_search diff_commit_line<cr>")
 
+--Remove white space in file
+vim.api.nvim_exec([[ nmap <leader>r :%s/\s\+$//e<CR> ]], false)
+
+
 -- airline themes
 vim.cmd[[let g:airline_powerline_fonts=1]]
 vim.cmd[[let g:airline_theme='deus']]

@@ -14,36 +14,36 @@ return {
         },
         opts = function()
             local lspconfig = require("lspconfig")
-            
+
             -- Adds cmp as a capability to the lsp autocompletion
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            
+
             -- Mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-            
+
             --local opts = { noremap=true, silent=true }
             --vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
             --vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
             --vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
             --vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-            
+
             -- Use an on_attach function to only map the following keys
             -- after the language server attaches to the current buffer
-            
+
             local function custom_lsp_attach(client, bufnr)
                 local ts_builtin = require("telescope.builtin")
-            
+
                 local function map(mode, l, r, opts)
                     opts = opts or {}
                     opts.buffer = bufnr
                     vim.keymap.set(mode, l, r, opts)
                 end
-            
+
                 local opts = {
                     noremap = true,
                     silent = true,
                 }
-            
+
                 -- Mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
                 map("n", "gla", vim.lsp.buf.code_action, opts)
@@ -56,7 +56,8 @@ return {
                 map("n", "glk", vim.diagnostic.goto_prev, opts)
                 map("n", "gln", vim.lsp.buf.rename, opts)
                 map("n", "glp", vim.lsp.buf.execute_command, opts)
-                map("n", "glr", vim.lsp.buf.references, opts)
+                --map("n", "glr", vim.lsp.buf.references, opts) -- Outputs to another buffer
+                map("n", "glr", ts_builtin.lsp_references, opts) -- outputs to telescope
                 map("n", "gltd", vim.lsp.buf.type_definition, opts)
                 map("n", "glwd", ts_builtin.diagnostics, opts)
                 map("n", "glwl", function()
@@ -72,11 +73,25 @@ return {
                 map("n", "glf", function()
                     vim.lsp.buf.format({ async = true })
                 end, opts)
+                vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+                    vim.lsp.handlers.hover, {
+                        border = "single"
+                    }
+                )
+                -- experimenting with diagnostic
+                --vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.with(
+                --    vim.lsp.diagnostic.on_diagnostic, {
+                --        underline = true,
+                --        virtual_text = {
+                --            spacing = 4,
+                --        },
+                --    }
+                --)
             end
             local configs = require("lspconfig/configs")
-            
+
             ---------------------setup------------------------------
-            
+
             --if not lspconfig.lua_ls then
             --    configs.lua_ls = {
             --        default_config = {
@@ -87,7 +102,7 @@ return {
             --        },
             --    };
             --end
-            
+
             --nvim_lsp.clangd.setup({
             --    cmd = { "clangd", "--background-index", "--clang-tidy", "--suggest-missing-includes", "--header-insertion=iwyu" },
             --    filetypes = { "c", "cpp" },
@@ -99,13 +114,13 @@ return {
             --        semanticHighlighting = true,
             --    }
             --})
-            
+
             -- ADD SERVERS HERE TO GET ATTACHED
             local servers = {
                 --"lua_ls",
                 --"clangd"
             }
-            
+
             for _, lsp in ipairs(servers) do
                 lspconfig[lsp].setup({
                     on_attach = custom_lsp_attach,
@@ -116,11 +131,11 @@ return {
                     }
                 })
             end
-            
+
             -- nvim-metals Setup
             local Path = require("plenary.path")
             local metals = require("metals")
-            
+
             metals_config = metals.bare_config()
             metals_config.on_attach = custom_lsp_attach
             metals_config.settings = {
@@ -145,10 +160,10 @@ return {
                 end
                 return root_dir
             end
-            
+
             metals_config.init_options.statusBarProvider = "on"
             metals_config.capabilities = capabilities
-            
+
             local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = {"sbt", "scala"},

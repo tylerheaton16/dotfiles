@@ -40,7 +40,8 @@
             require("wildfire").setup()
         end,
     },
-    {"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         name = "lsp_lines.nvim",
         --event = "VeryLazy",
         --keys = {
@@ -58,16 +59,63 @@
         end,
     },
     {
+        "David-Kunz/gen.nvim",
+        opts = {
+            model = "mistral", -- The default model to use.
+            --model = "zephyr", -- The default model to use.
+            host = "localhost", -- The host running the Ollama service.
+            port = "11434", -- The port on which the Ollama service is listening.
+            display_mode = "float", -- The display mode. Can be "float" or "split".
+            show_prompt = false, -- Shows the Prompt submitted to Ollama.
+            show_model = true, -- Displays which model you are using at the beginning of your chat session.
+            no_auto_close = true, -- Never closes the window automatically.
+            init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
+            -- Function to initialize Ollama
+            command = function(options)
+                return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/generate -d $body"
+            end,
+            -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
+            -- This can also be a command string.
+            -- The executed command must return a JSON object with { response, context }
+            -- (context property is optional).
+            -- list_models = '<omitted lua function>', -- Retrieves a list of model names
+            debug = false -- Prints errors and the command which is run.
+        },
+        config = function(_, opts)
+            require("gen").setup(opts)
+            require("gen").prompts['Elaborate_Text'] = {
+                prompt = "Elaborate the following text:\n$text",
+                replace = true
+            }
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+            --"nvim-telescope/telescope-ui-select", -- errors out?
         },
         cmd = "Telescope",
         config = function()
-            require('telescope').setup()
-            require('telescope').load_extension('fzf')
+            -- This is your opts table
+            require("telescope").setup {
+              extensions = {
+                ["ui-select"] = {
+                  require("telescope.themes").get_dropdown {
+                    -- even more opts
+                  }
+                }
+              }
+            }
+            -- To get ui-select loaded and working with telescope, you need to call
+            -- load_extension, somewhere after setup function:
+            require("telescope").load_extension("ui-select")
+            require('telescope').load_extension("fzf")
         end,
+    },
+    {
+        "nvim-telescope/telescope-ui-select.nvim"
     },
     {
         "rcarriga/nvim-notify",
@@ -151,16 +199,16 @@
     {
         "willchao612/vim-diagon",
     },
-    --{
-    --    "m4xshen/autoclose.nvim",
-    --    config = function()
-    --        require("autoclose").setup({
-    --            options = {
-    --                disabled_filetypes={"text", "verilog_systemverilog", "sdc", "scala"},
-    --            }
-    --        })
-    --    end,
-    --},
+    {
+        "m4xshen/autoclose.nvim",
+        config = function()
+            require("autoclose").setup({
+                options = {
+                    disabled_filetypes={"text", "verilog_systemverilog", "sdc", },
+                }
+            })
+        end,
+    },
     {
         "shumphrey/fugitive-gitlab.vim",
         dependencies = {
@@ -184,6 +232,30 @@
         },
         config = function()
             require("telescope").load_extension("env")
+        end,
+    },
+    -- Anything below this is absolutely useless and I have no clue why I added them
+    -- However, one could argue they increase productivity. Thanks reddit
+    {
+        "tamton-aquib/duck.nvim",
+        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {}),
+        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {}),
+        vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {}),
+    },
+    {
+        'eandrju/cellular-automaton.nvim'
+    },
+    {
+        "seandewar/killersheep.nvim",
+        config = function()
+            require("killersheep").setup{
+                gore = true,           -- Enables/disables blood and gore.
+                keymaps = {
+                    move_left = "h",     -- Keymap to move cannon to the left.
+                    move_right = "l",    -- Keymap to move cannon to the right.
+                    shoot = "<Space>",   -- Keymap to shoot the cannon.
+                },
+            }
         end,
     },
 }

@@ -252,6 +252,9 @@ vim.opt.listchars = {
     -- Show trailing spaces
     trail = "◊",
 }
+-- Spell Checker
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
 
 -- LSP settings --
 cfg = {}

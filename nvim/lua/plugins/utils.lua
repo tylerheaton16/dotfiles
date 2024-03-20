@@ -240,6 +240,9 @@
     -- Anything below this is absolutely useless and I have no clue why I added them
     -- However, one could argue they increase productivity. Thanks reddit
     {
+        "jbyuki/venn.nvim"
+    },
+    {
         "tamton-aquib/duck.nvim",
         vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {}),
         vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {}),

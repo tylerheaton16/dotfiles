@@ -43,16 +43,16 @@
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         name = "lsp_lines.nvim",
-        --event = "VeryLazy",
-        --keys = {
-        --    {
-        --    "<leader>ctl",
-        --    function()
-        --        require("lsp_lines").toggle()
-        --    end,
-        --    desc = "Toggle lsp_lines",
-        --    },
-        --},
+        event = "VeryLazy",
+        keys = {
+            {
+            "<leader>ctl",
+            function()
+                require("lsp_lines").toggle()
+            end,
+            desc = "Toggle lsp_lines",
+            },
+        },
         config = function()
             require("lsp_lines").setup()
             vim.diagnostic.config({virtual_text = false})
@@ -236,11 +236,11 @@
             require("telescope").load_extension("env")
         end,
     },
-    -- Anything below this is absolutely useless and I have no clue why I added them
-    -- However, one could argue they increase productivity. Thanks reddit
     {
         "jbyuki/venn.nvim"
     },
+    -- Anything below this is absolutely useless and I have no clue why I added them
+    -- However, one could argue they increase productivity. Thanks reddit
     {
         "tamton-aquib/duck.nvim",
         vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {}),

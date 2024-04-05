@@ -136,15 +136,12 @@
     {
         "https://github.com/tarikgraba/vim-lefdef.git",
     },
-    --{
-    --    "junegunn/fzf.vim",
-    --},
+    {
+        "junegunn/fzf.vim",
+    },
     {
         "junegunn/fzf",
         build = {"fzf#install()"},
-    },
-    {
-        "universal-ctags/ctags",
     },
     {
         "vhda/verilog_systemverilog.vim",

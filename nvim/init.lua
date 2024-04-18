@@ -164,9 +164,14 @@ nmap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 nmap("<leader>gr", "<cmd>Telescope advanced_git_search checkout_reflog<cr>")
 nmap("<leader>gf", "<cmd>Telescope advanced_git_search diff_commit_file<cr>")
 nmap("<leader>gc", "<cmd>Telescope advanced_git_search diff_commit_line<cr>")
+nmap('<leader>bd', '<cmd>lua require("better-digraphs").digraphs("normal")<cr>')
 
 --Remove white space in file
-vim.api.nvim_exec([[ nmap <leader>r :%s/\s\+$//e<CR> ]], false)
+--vim.api.nvim_exec([[ nmap <leader>r :%s/\s\+$//e<CR> ]], false)
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
 
 
 -- airline themes

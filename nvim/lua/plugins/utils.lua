@@ -236,6 +236,9 @@
     {
         "jbyuki/venn.nvim"
     },
+    {
+        "protex/better-digraphs.nvim"
+    },
     -- Anything below this is absolutely useless and I have no clue why I added them
     -- However, one could argue they increase productivity. Thanks reddit
     {

@@ -3,14 +3,16 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp", -- Completion for LSP
+            "hrsh7th/cmp-nvim-lsp",  -- Completion for LSP
             "scalameta/nvim-metals", -- Metals plugin
         },
     },
     {
-        "williamboman/nvim-lsp-installer",
+        --"williamboman/nvim-lsp-installer",
+        "williamboman/mason.nvim",
         dependencies = {
             "neovim/nvim-lspconfig",
+            "williamboman/mason-lspconfig.nvim",
         },
         opts = function()
             local lspconfig = require("lspconfig")
@@ -29,6 +31,14 @@ return {
 
             -- Use an on_attach function to only map the following keys
             -- after the language server attaches to the current buffer
+
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            }
 
             local function custom_lsp_attach(client, bufnr)
                 local ts_builtin = require("telescope.builtin")
@@ -52,7 +62,7 @@ return {
                         not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
                         { bufnr = bufnr }
                     )
-                    end
+                end
                 )
 
                 map("n", "gla", vim.lsp.buf.code_action, opts)
@@ -97,20 +107,9 @@ return {
                 --    }
                 --)
             end
-            local configs = require("lspconfig/configs")
 
             ---------------------setup------------------------------
 
-            --if not lspconfig.lua_ls then
-            --    configs.lua_ls = {
-            --        default_config = {
-            --            cmd = { "lua-language-server" },
-            --            filetypes = { "lua" },
-            --            root_dir = lspconfig.util.root_pattern(".git"),
-            --            settings = {},
-            --        },
-            --    };
-            --end
 
             --nvim_lsp.clangd.setup({
             --    cmd = { "clangd", "--background-index", "--clang-tidy", "--suggest-missing-includes", "--header-insertion=iwyu" },
@@ -126,18 +125,31 @@ return {
 
             -- ADD SERVERS HERE TO GET ATTACHED
             local servers = {
-                "clangd",
+                clangd = {},
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            --format = { enable = false },           -- Use stylua instead
+                            runtime = { version = "LuaJIT" },
+                            diagnostics = { globals = { "vim" } }, -- Recognize the `vim` global
+                            workspace = {
+                                checkThirdParty = false,
+                                library = vim.api.nvim_get_runtime_file("", true), -- Make server aware of nvim runtime files
+                            },
+
+                        },
+                    },
+                },
             }
 
-            for _, lsp in ipairs(servers) do
-                lspconfig[lsp].setup({
-                    on_attach = custom_lsp_attach,
-                    capabilities = capabilities,
-                    flags = {
-                        -- This will be the default in neovim 0.7+
-                        debounce_text_changes = 150,
-                    }
-                })
+            for server, base_server_opts in pairs(servers) do
+                local server_opts = vim.tbl_deep_extend(
+                    "force",
+                    { capabilities = vim.deepcopy(capabilities), },
+                    base_server_opts or {},
+                    { on_attach = custom_lsp_attach }
+                )
+                require("lspconfig")[server].setup(server_opts)
             end
 
             -- nvim-metals Setup
@@ -176,7 +188,7 @@ return {
 
             local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = {"sbt", "scala"},
+                pattern = { "sbt", "scala" },
                 callback = function()
                     metals.initialize_or_attach(metals_config)
                 end,
@@ -184,7 +196,8 @@ return {
             })
         end,
         config = function(_, opts)
-            require("nvim-lsp-installer").setup(opts)
+            require("mason").setup(opts)
+            require("mason-lspconfig").setup()
         end,
     }
 }

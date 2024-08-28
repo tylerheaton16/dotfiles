@@ -46,6 +46,15 @@ return {
 
                 -- Mappings.
                 -- See `:help vim.lsp.*` for documentation on any of the below functions
+                --vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                map("n", "cth", function()
+                    vim.lsp.inlay_hint.enable(
+                        not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+                        { bufnr = bufnr }
+                    )
+                    end
+                )
+
                 map("n", "gla", vim.lsp.buf.code_action, opts)
                 map("n", "gld", ts_builtin.lsp_definitions, opts)
                 map("n", "glD", vim.lsp.buf.declaration, opts)
@@ -117,8 +126,7 @@ return {
 
             -- ADD SERVERS HERE TO GET ATTACHED
             local servers = {
-                --"lua_ls",
-                --"clangd"
+                "clangd",
             }
 
             for _, lsp in ipairs(servers) do
@@ -139,10 +147,12 @@ return {
             metals_config = metals.bare_config()
             metals_config.on_attach = custom_lsp_attach
             metals_config.settings = {
-                showImplicitArguments = true,
                 excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
                 --serverVersion = "0.11.11"
                 --serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT"
+                enableSemanticHighlighting = true,
+                showImplicitArguments = true,
+                showInferredType = true,
             }
             metals_config.root_patterns = { "build.sbt", "build.sc" }
             --

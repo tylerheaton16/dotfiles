@@ -15,13 +15,13 @@ return{
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
                 return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
             end
-            
+
             local feedkey = function(key, mode)
                 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
             end
-            
+
             vim.cmd([[set completeopt=menu,menuone,noselect]])
-            
+
             local cmp = require("cmp")
             local select_opts = {behavior = cmp.SelectBehavior.Select}
             cmp.setup({
@@ -52,7 +52,7 @@ return{
                             fallback()
                         end
                 end, { 'i', 's' }),
-            
+
                   ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                   ['<C-f>'] = cmp.mapping.scroll_docs(4),
                   ['<C-o>'] = cmp.mapping.complete(),

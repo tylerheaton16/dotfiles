@@ -41,6 +41,9 @@
         end,
     },
     {
+        "HiPhish/rainbow-delimiters.nvim",
+    },
+    {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         name = "lsp_lines.nvim",
         event = "VeryLazy",
@@ -238,6 +241,16 @@
     },
     {
         "protex/better-digraphs.nvim"
+    },
+    {
+        "folke/todo-comments.nvim",
+        nmap("<leader>td", ":TodoTelescope<cr>"),
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
     },
     -- Anything below this is absolutely useless and I have no clue why I added them
     -- However, one could argue they increase productivity. Thanks reddit

@@ -297,7 +297,6 @@ vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 --vim.cmd('source ~/.vtags-3.01/vtags_vim_api.vim')
 
 -- Tagbar Setup --
-vim.g.tagbar_ctags_bin="/home/users/tim/.local/mybin/ctags"
 vim.g['lightline'] = {
 	colorscheme = 'PaperColor'
 }

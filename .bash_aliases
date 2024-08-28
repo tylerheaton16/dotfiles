@@ -111,12 +111,12 @@ alias gb="git branch"
 alias gt="git stash list"
 #################PATH Updates##############
 
-# Configures fuzzy finder 
+# Configures fuzzy finder
 ## -- Terafox FZF color scheme below -- #
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
-    --color=fg:#5a93aa,bg:#152528,hl:#5a93aa 
-    --color=fg+:#00bfe5,bg+:#152528,hl+:#00bfe5 
-    --color=info:#8eb2af,prompt:#eb746b,pointer:#000000 
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#5a93aa,bg:#152528,hl:#5a93aa
+    --color=fg+:#00bfe5,bg+:#152528,hl+:#00bfe5
+    --color=info:#8eb2af,prompt:#eb746b,pointer:#000000
     --color=marker:#87ff00,spinner:#b97490,header:#345563
     --color=preview-fg:#5a93aa,preview-bg:#152528'
 
@@ -142,10 +142,6 @@ git_branch() {
 
 export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(tput sgr0)\] $BBlue\$(git_branch)$Color_Off "
 
-
-if [ ${USER} == heaton.49 ]; then
-    source $HOME/linuxbrew/all_proxy.sh
-fi
 
 eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_NO_ENV_FILTERING=1

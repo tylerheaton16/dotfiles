@@ -32,7 +32,9 @@ if [ ! -d "$HOME/.config/nvim/lua/config" ]; then
 fi
 
 if [ ! -f $HOME/nvim.appimage ]; then
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    #curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    #neovim-releases is RHEL8, releaes uses RHEL9.
+    wget https://github.com/neovim/neovim-releases/releases/download/nightly/nvim.appimage
         if [[ -f $HOME/.local/bin/nvim ]]
         then
             rm $HOME/.local/bin/nvim

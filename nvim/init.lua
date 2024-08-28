@@ -1,11 +1,6 @@
 -- Neovim Configurations
 --
 --
---local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
---if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
---      vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
---      vim.api.nvim_command("packadd packer.nvim")
---end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,6 +12,15 @@ if not vim.loop.fs_stat(lazypath) then
     "--branch=stable", -- latest stable release
     lazypath,
   })
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_echo({
+        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+        { out, "WarningMsg" },
+        { "\nPress any key to exit..." },
+      }, true, {})
+      vim.fn.getchar()
+      os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -173,7 +177,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
-
 -- airline themes
 vim.cmd[[let g:airline_powerline_fonts=1]]
 vim.cmd[[let g:airline_theme='deus']]
@@ -291,6 +294,10 @@ cfg = {}
 vim.opt_global.shortmess:remove("F")
 vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 
+--
+--autocmd FileType lef so ~/.vim/syntax/lef.vim
+--autocmd FileType def so ~/.vim/syntax/def.vim
+
 -- Vtags settings --
 -- Can't get to work with out of bounds issue --
 --vim.g.python3_host_prog="/share/snorlax/scratch/tyler.heaton/basalisc_p2/rambus-ddr4/Galois_ddr4_beh_phy_PN3258_1_03_03112022/.venv/bin/python"
@@ -306,10 +313,10 @@ require("lazy").setup({
     },
     checker = {
         enabled = true,
-        notify = false,
+        notify = true,
     },
     change_detection = {
-        notify = false,
+        notify = true,
     },
     performance = {
         rtp = {

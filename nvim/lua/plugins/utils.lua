@@ -150,14 +150,11 @@
         "vhda/verilog_systemverilog.vim",
     },
     {
-        "liuchengxu/vista.vim",
-    },
-    {
         "godlygeek/tabular",
     },
     --use 'vim-scripts/verilog_emacsauto.vim'
     {
-        "benmills/vimux" --From vim can open tmux terminal",
+        "preservim/vimux" --From vim can open tmux terminal",
     },
     {
         "christoomey/vim-tmux-navigator",
@@ -166,13 +163,7 @@
         "psliwka/vim-smoothie",
     },
     {
-        "camspiers/lens.vim",
-    },
-    {
         "lervag/vimtex",
-    },
-    {
-        "voldikss/vim-floaterm",
     },
     --  use 'justinmk/vim-syntax-extra' -- c highlighting
     {
@@ -184,11 +175,9 @@
     {
         "vim-scripts/tcl.vim--smithfield",
     },
-    {
-        "tpope/vim-vinegar",
-    },
-    --  use 'vim-airline/vim-airline'
-    --  use 'vim-airline/vim-airline-themes'
+    --{
+    --    "tpope/vim-vinegar",
+    --},
     {
         "dhruvasagar/vim-table-mode",
     },
@@ -197,9 +186,6 @@
     },
     {
         "itchyny/lightline.vim",
-    },
-    {
-        "willchao612/vim-diagon",
     },
     {
         "m4xshen/autoclose.nvim",

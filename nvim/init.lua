@@ -4,28 +4,28 @@
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
     if vim.v.shell_error ~= 0 then
-      vim.api.nvim_echo({
-        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-        { out, "WarningMsg" },
-        { "\nPress any key to exit..." },
-      }, true, {})
-      vim.fn.getchar()
-      os.exit(1)
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out,                            "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
     end
 end
 vim.opt.rtp:prepend(lazypath)
 
 local fn = vim.fn -- shorthand for fn.bufnr() calls
-local g = vim.g -- table for the global variables
+local g = vim.g   -- table for the global variables
 
 vim.opt_global.shortmess:remove("F")
 
@@ -43,7 +43,7 @@ function nmap(shortcut, command)
 end
 
 -- Can now call 1 function to set the options
-local scopes = { o = vim.opt, b = vim.b, w = vim.wo}
+local scopes = { o = vim.opt, b = vim.b, w = vim.wo }
 local function opt(scope, key, value)
     scopes[scope][key] = value
     if scope ~= "o" then
@@ -52,7 +52,6 @@ local function opt(scope, key, value)
 end
 
 function set_ft(events, ft_list, ft, ft_cmd)
-
     if (ft == nil) then
         ft = ''
     else
@@ -67,7 +66,7 @@ function set_ft(events, ft_list, ft, ft_cmd)
 
     for _, item in pairs(ft_list) do
         vim.api.nvim_create_autocmd(events, {
-            pattern = {item},
+            pattern = { item },
             command = cmd,
         })
     end
@@ -83,7 +82,7 @@ nmap("<leader>eb", ":vsplit $HOME/.bashrc <CR>")
 nmap("<leader>bn", ":bn <CR>")
 nmap("<leader>bp", ":bp <CR>")
 nmap("<leader>bb", ":tab ball <CR>")
-nmap("<leader>q",  ":qa! <CR>")
+nmap("<leader>q", ":qa! <CR>")
 nmap("<leader>wh", "<C-w>h")
 nmap("<leader>wj", "<C-w>j")
 nmap("<leader>wk", "<C-w>k")
@@ -118,14 +117,14 @@ nmap("<leader>w-", ":sp <CR>")
 nmap("<leader>w/", ":vsp <CR>")
 
 -- Appends verilog and systemverilog together to work for vtags/verilog-autos
-local buf = {"BufRead", "BufNewFile"}
-local ft_vlog  = {"*.v", "*.vg", "*.vm", "*.sv", "*.vams", "*.f"}
+local buf     = { "BufRead", "BufNewFile" }
+local ft_vlog = { "*.v", "*.vg", "*.vm", "*.sv", "*.vams", "*.f" }
 --set_ft(buf, ft_vlog, "verilog_systemverilog.verilog.systemverilog", [[softtabstop=4 shiftwidth=4 textwidth=80]])
 set_ft(buf, ft_vlog, "verilog_systemverilog", [[tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80]])
 --set_ft({"FileType"}, {"verilog_systemverilog"}, nil, [[setlocal foldmethod=manual]])
 
 -- Vim-Fugitive + vimbinds
-nmap("<leader>g",  ":Git")
+nmap("<leader>g", ":Git")
 nmap("<leader>gl", ":Git log <CR>")
 nmap("<leader>gp", ":Git log -p % <CR>")
 nmap("<leader>gd", ":Gvdiffsplit! <CR>")
@@ -133,11 +132,11 @@ nmap("<leader>gD", ":Git diff master % <CR>")
 nmap("<leader>gb", ":Git blame")
 nmap("<leader>gs", ":Git status <CR>")
 nmap("<leader>gw", ":Gwrite <CR>")
-nmap("<leader>g",  ":Git <CR>")
-nmap("<leader>o",  ":only <CR>")
-nmap("<leader>gdh",":diffget //2 <CR>")
-nmap("<leader>gdl",":diffget //3 <CR>")
-set_ft({"FileType"}, {"git"}, nil, [[setlocal foldmethod=syntax]])
+nmap("<leader>g", ":Git <CR>")
+nmap("<leader>o", ":only <CR>")
+nmap("<leader>gdh", ":diffget //2 <CR>")
+nmap("<leader>gdl", ":diffget //3 <CR>")
+set_ft({ "FileType" }, { "git" }, nil, [[setlocal foldmethod=syntax]])
 
 -- tmux / vimux config
 nmap("<leader>vp", ":VimuxPromptCommand<CR>")
@@ -152,11 +151,11 @@ nmap("<silent> <leader>wk", "TmuxNavigateUp <CR>")
 nmap("<silent> <leader>wl", "TmuxNavigateRight <CR>")
 
 -- fzf Config
-vim.cmd[[let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }]]
+vim.cmd [[let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }]]
 
 -- Vim Table - ReSt Support
-vim.cmd[[let g:table_mode_corner_corner='+']]
-vim.cmd[[let g:table_mode_header_fillchar='=']]
+vim.cmd [[let g:table_mode_corner_corner='+']]
+vim.cmd [[let g:table_mode_header_fillchar='=']]
 
 -- File Finder Commands
 nmap("<leader>fff", ":Files")
@@ -173,13 +172,9 @@ nmap('<leader>bd', '<cmd>lua require("better-digraphs").digraphs("normal")<cr>')
 --Remove white space in file
 --vim.api.nvim_exec([[ nmap <leader>r :%s/\s\+$//e<CR> ]], false)
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
+    pattern = { "*" },
+    command = [[%s/\s\+$//e]],
 })
-
--- airline themes
-vim.cmd[[let g:airline_powerline_fonts=1]]
-vim.cmd[[let g:airline_theme='deus']]
 
 --vim-diagon settings
 --vim.cmd[[let g:diagon_use_echo=1]]
@@ -205,7 +200,7 @@ opt("o", "foldmethod", "manual")
 opt("o", "virtualedit", "all")
 opt("o", "mouse", "a")
 opt("w", "wrap", true)
-opt("o", "ttyfast",  true)
+opt("o", "ttyfast", true)
 opt("o", "modelines", 0)
 
 
@@ -269,34 +264,27 @@ function _G.Toggle_venn()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)
     if venn_enabled == "nil" then
         vim.b.venn_enabled = true
-        vim.cmd[[setlocal ve=all]]
+        vim.cmd [[setlocal ve=all]]
         -- draw a line on HJKL keystokes
-        vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true })
+        vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true })
         -- draw a box by pressing "f" with visual selection
-        vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true })
     else
-        vim.cmd[[setlocal ve=]]
-        vim.cmd[[mapclear <buffer>]]
+        vim.cmd [[setlocal ve=]]
+        vim.cmd [[mapclear <buffer>]]
         vim.b.venn_enabled = nil
     end
 end
+
 -- toggle keymappings for venn using <leader>v
-vim.api.nvim_set_keymap('n', '<leader>ve', ":lua Toggle_venn()<CR>", { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>ve', ":lua Toggle_venn()<CR>", { noremap = true })
 
 -- LSP settings --
-cfg = {}
--- Have to add lsp_signature since it sits in /opt
---vim.cmd([[packadd! lsp_signature.nvim]])
---require "lsp_signature".setup(cfg)
 vim.opt_global.shortmess:remove("F")
 vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
-
---
---autocmd FileType lef so ~/.vim/syntax/lef.vim
---autocmd FileType def so ~/.vim/syntax/def.vim
 
 -- Vtags settings --
 -- Can't get to work with out of bounds issue --
@@ -305,11 +293,11 @@ vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 
 -- Tagbar Setup --
 vim.g['lightline'] = {
-	colorscheme = 'PaperColor'
+    colorscheme = 'PaperColor'
 }
 require("lazy").setup({
     spec = {
-        { import = "plugins"},
+        { import = "plugins" },
     },
     checker = {
         enabled = true,

@@ -1,7 +1,7 @@
- return {
+return {
     { "nvim-tree/nvim-web-devicons", lazy = true },
     -- Used often by other plugins
-    { "nvim-lua/plenary.nvim", lazy = true },
+    { "nvim-lua/plenary.nvim",       lazy = true },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -49,66 +49,67 @@
         event = "VeryLazy",
         keys = {
             {
-            "<leader>ctl",
-            function()
-                require("lsp_lines").toggle()
-            end,
-            desc = "Toggle lsp_lines",
+                "<leader>ctl",
+                function()
+                    require("lsp_lines").toggle()
+                end,
+                desc = "Toggle lsp_lines",
             },
         },
         config = function()
             require("lsp_lines").setup()
-            vim.diagnostic.config({virtual_text = false})
+            vim.diagnostic.config({ virtual_text = false })
         end,
     },
     {
         "David-Kunz/gen.nvim",
 
         -- Custom Parameters (with defaults)
-            opts = {
-                --model = "mistral", -- The default model to use.
-                model = "codellama", -- The default model to use.
-                host = "localhost", -- The host running the Ollama service.
-                port = "11434", -- The port on which the Ollama service is listening.
-                display_mode = "split", -- The display mode. Can be "float" or "split".
-                show_prompt = false, -- Shows the Prompt submitted to Ollama.
-                show_model = false, -- Displays which model you are using at the beginning of your chat session.
-                quit_map = "q", -- set keymap for quit
-                no_auto_close = true, -- Never closes the window automatically.
-                init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
-                -- Function to initialize Ollama
-                command = function(options)
-                    return "curl --silent --no-buffer -X POST http://" .. options.host .. ":" .. options.port .. "/api/chat -d $body"
-                end,
-                -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
-                -- This can also be a command string.
-                -- The executed command must return a JSON object with { response, context }
-                -- (context property is optional).
-                -- list_models = '<omitted lua function>', -- Retrieves a list of model names
-                debug = false -- Prints errors and the command which is run.
-            },
-                config = function(_, opts)
-                    require("gen").setup(opts)
-                end,
+        opts = {
+            --model = "mistral", -- The default model to use.
+            model = "codellama",        -- The default model to use.
+            host = "localhost",         -- The host running the Ollama service.
+            port = "11434",             -- The port on which the Ollama service is listening.
+            display_mode = "split",     -- The display mode. Can be "float" or "split".
+            show_prompt = false,        -- Shows the Prompt submitted to Ollama.
+            show_model = false,         -- Displays which model you are using at the beginning of your chat session.
+            quit_map = "q",             -- set keymap for quit
+            no_auto_close = true,       -- Never closes the window automatically.
+            init = function(options) pcall(io.popen, "ollama serve > /dev/null 2>&1 &") end,
+            -- Function to initialize Ollama
+            command = function(options)
+                return "curl --silent --no-buffer -X POST http://" ..
+                options.host .. ":" .. options.port .. "/api/chat -d $body"
+            end,
+            -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
+            -- This can also be a command string.
+            -- The executed command must return a JSON object with { response, context }
+            -- (context property is optional).
+            -- list_models = '<omitted lua function>', -- Retrieves a list of model names
+            debug = false     -- Prints errors and the command which is run.
+        },
+        config = function(_, opts)
+            require("gen").setup(opts)
+        end,
     },
     {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
             --"nvim-telescope/telescope-ui-select", -- errors out?
         },
         cmd = "Telescope",
         config = function()
             -- This is your opts table
             require("telescope").setup {
-              extensions = {
-                ["ui-select"] = {
-                  require("telescope.themes").get_dropdown {
-                    -- even more opts
-                  }
+                extensions = {
+                    ["ui-select"] = {
+                        require("telescope.themes").get_dropdown {
+                            -- even more opts
+                        }
+                    }
                 }
-              }
             }
             -- To get ui-select loaded and working with telescope, you need to call
             -- load_extension, somewhere after setup function:
@@ -144,7 +145,7 @@
     },
     {
         "junegunn/fzf",
-        build = {"fzf#install()"},
+        build = function() vim.fn['fzf#install']() end
     },
     {
         "vhda/verilog_systemverilog.vim",
@@ -192,7 +193,7 @@
         config = function()
             require("autoclose").setup({
                 options = {
-                    disabled_filetypes={"text", "verilog_systemverilog", "sdc", },
+                    disabled_filetypes = { "text", "verilog_systemverilog", "sdc", },
                 }
             })
         end,
@@ -233,9 +234,9 @@
         nmap("<leader>td", ":TodoTelescope<cr>"),
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
-          -- your configuration comes here
-          -- or leave it empty to use the default settings
-          -- refer to the configuration section below
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
         }
     },
     -- Anything below this is absolutely useless and I have no clue why I added them
@@ -252,12 +253,12 @@
     {
         "seandewar/killersheep.nvim",
         config = function()
-            require("killersheep").setup{
+            require("killersheep").setup {
                 gore = true,           -- Enables/disables blood and gore.
                 keymaps = {
-                    move_left = "h",     -- Keymap to move cannon to the left.
-                    move_right = "l",    -- Keymap to move cannon to the right.
-                    shoot = "<Space>",   -- Keymap to shoot the cannon.
+                    move_left = "h",   -- Keymap to move cannon to the left.
+                    move_right = "l",  -- Keymap to move cannon to the right.
+                    shoot = "<Space>", -- Keymap to shoot the cannon.
                 },
             }
         end,

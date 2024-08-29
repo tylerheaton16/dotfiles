@@ -21,7 +21,7 @@ return {
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             -- Mappings.
-            -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+            -- See :help vim.diagnostic.* for documentation on any of the below functions
 
             --local opts = { noremap=true, silent=true }
             --vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -55,7 +55,7 @@ return {
                 }
 
                 -- Mappings.
-                -- See `:help vim.lsp.*` for documentation on any of the below functions
+                -- See :help vim.lsp.* for documentation on any of the below functions
                 --vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
                 map("n", "cth", function()
                     vim.lsp.inlay_hint.enable(
@@ -131,7 +131,7 @@ return {
                         Lua = {
                             --format = { enable = false },           -- Use stylua instead
                             runtime = { version = "LuaJIT" },
-                            diagnostics = { globals = { "vim" } }, -- Recognize the `vim` global
+                            diagnostics = { globals = { "vim" } }, -- Recognize the vim global
                             workspace = {
                                 checkThirdParty = false,
                                 library = vim.api.nvim_get_runtime_file("", true), -- Make server aware of nvim runtime files

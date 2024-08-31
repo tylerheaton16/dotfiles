@@ -289,7 +289,6 @@ vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 -- Vtags settings --
 -- Can't get to work with out of bounds issue --
 --vim.g.python3_host_prog="/share/snorlax/scratch/tyler.heaton/basalisc_p2/rambus-ddr4/Galois_ddr4_beh_phy_PN3258_1_03_03112022/.venv/bin/python"
---vim.cmd('source ~/.vtags-3.01/vtags_vim_api.vim')
 
 -- Tagbar Setup --
 vim.g['lightline'] = {
@@ -335,5 +334,5 @@ require("lazy").setup({
     },
 })
 -- plugins --
-require('config.vtags')
+--require('config.vtags')
 --vim.cmd[[autocmd BufReadPost * lua require('config.vtags')]]

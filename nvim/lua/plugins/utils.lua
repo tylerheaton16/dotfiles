@@ -211,6 +211,12 @@ return {
         },
     },
     {
+       "tylerheaton16/vtags",
+        config = function()
+            require("vtags")
+        end,
+    },
+    {
         "aaronhallaert/advanced-git-search.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",

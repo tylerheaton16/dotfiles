@@ -162,9 +162,16 @@ return {
                 excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
                 --serverVersion = "0.11.11"
                 --serverVersion = "0.10.9+131-30f6a57b-SNAPSHOT"
-                enableSemanticHighlighting = true,
-                showImplicitArguments = true,
-                showInferredType = true,
+                --enableSemanticHighlighting = true,
+                --showImplicitArguments = true,
+                --showInferredType = true,
+                inlayHints = {
+                    hintsInPatternMatch = { enable = true },
+                    implicitArguments = { enable = true },
+                    implicitConversions = { enable = true },
+                    inferredTypes = { enable = true },
+                    typeParameters = { enable = true },
+                },
             }
             metals_config.root_patterns = { "build.sbt", "build.sc" }
             --
@@ -188,7 +195,7 @@ return {
 
             local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "sbt", "scala" },
+                pattern = { "sbt", "scala", "sc" },
                 callback = function()
                     metals.initialize_or_attach(metals_config)
                 end,

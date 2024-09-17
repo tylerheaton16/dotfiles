@@ -189,6 +189,12 @@ vim.opt.visualbell = true
 -- need cmdheight = 1 or searching makes me hit enter all the time
 vim.opt.cmdheight = 1
 
+-- nvim Treesitter fold configuration
+opt("o", "foldmethod", "expr")
+opt("o", "foldexpr", 'nvim_treesitter#foldexpr()')
+opt("o", "foldlevelstart", 99)
+
+-- settings
 opt("o", "termguicolors", true)
 opt("o", "ttimeoutlen", 5)
 vim.cmd([[filetype plugin indent on]])
@@ -196,7 +202,6 @@ vim.cmd([[set noea "set equalalways]])
 vim.cmd([[set backspace=indent,eol,start]])
 vim.cmd([[set updatetime=1000]])
 opt("o", "splitright", true)
-opt("o", "foldmethod", "manual")
 opt("o", "virtualedit", "all")
 opt("o", "mouse", "a")
 opt("w", "wrap", true)

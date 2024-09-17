@@ -23,6 +23,7 @@ return {
                     --"devicetree",
                 },
                 highlight = { enable = true },
+                fold = { enable = true },
                 textobjects = { enable = true },
                 incremental_selection = { enable = true },
 

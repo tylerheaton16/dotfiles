@@ -162,6 +162,10 @@ return {
     },
     {
         "psliwka/vim-smoothie",
+        --"karb94/neoscroll.nvim",
+        --config = function()
+        --    require('neoscroll').setup({})
+        --end
     },
     {
         "lervag/vimtex",
@@ -211,7 +215,7 @@ return {
         },
     },
     {
-       "tylerheaton16/vtags",
+        "tylerheaton16/vtags",
         config = function()
             require("vtags")
         end,

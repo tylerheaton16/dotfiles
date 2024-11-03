@@ -173,7 +173,7 @@ return {
                     typeParameters = { enable = true },
                 },
             }
-            metals_config.root_patterns = { "build.sbt", "build.sc" }
+            metals_config.root_patterns = { "build.sbt", "build.sc", "build.mill" }
             --
             -- Find the last directory which contains one of the files/directories in 'metals_config.root_patterns'
             metals_config.find_root_dir = function(patterns, startpath)

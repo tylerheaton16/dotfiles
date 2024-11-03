@@ -119,8 +119,10 @@ nmap("<leader>w/", ":vsp <CR>")
 -- Appends verilog and systemverilog together to work for vtags/verilog-autos
 local buf     = { "BufRead", "BufNewFile" }
 local ft_vlog = { "*.v", "*.vg", "*.vm", "*.sv", "*.vams", "*.f" }
+local ft_mill = { "*.mill" }
 --set_ft(buf, ft_vlog, "verilog_systemverilog.verilog.systemverilog", [[softtabstop=4 shiftwidth=4 textwidth=80]])
 set_ft(buf, ft_vlog, "verilog_systemverilog", [[tabstop=2 softtabstop=2 shiftwidth=2 textwidth=80]])
+set_ft(buf, ft_mill, "scala")
 --set_ft({"FileType"}, {"verilog_systemverilog"}, nil, [[setlocal foldmethod=manual]])
 
 -- Vim-Fugitive + vimbinds

@@ -178,13 +178,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
---vim-diagon settings
---vim.cmd[[let g:diagon_use_echo=1]]
-
--- Global Settings
---opt("g", "python_highlight_all", 1)
---opt("g", "python_version_2", 0)
---opt("b", "python_version_2", 0)
 
 -- nvim Configuration
 vim.opt.visualbell = true
@@ -293,9 +286,10 @@ vim.api.nvim_set_keymap('n', '<leader>ve', ":lua Toggle_venn()<CR>", { noremap =
 vim.opt_global.shortmess:remove("F")
 vim.keymap.set("n", "<leader>mc", ":Telescope metals commands <CR>")
 
+-- Vtags keybind
+vim.keymap.set("n", "<leader>vt", ":source $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags_vim_api.vim <CR>")
+
 -- Vtags settings --
--- Can't get to work with out of bounds issue --
---vim.g.python3_host_prog="/share/snorlax/scratch/tyler.heaton/basalisc_p2/rambus-ddr4/Galois_ddr4_beh_phy_PN3258_1_03_03112022/.venv/bin/python"
 
 -- Tagbar Setup --
 vim.g['lightline'] = {

@@ -143,14 +143,20 @@ git_branch() {
 export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(tput sgr0)\] $BBlue\$(git_branch)$Color_Off "
 
 
-eval $(dircolors --sh ~/.dircolors)
+#eval $(dircolors --sh ~/.dircolors)
 #export HOMEBREW_NO_ENV_FILTERING=1
 #export HOMEBREW_CURLRC=1
 export PATH="$HOME/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/share/coursier/bin/:$PATH"
 #export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
-alias vtags='/usr/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias vtags='/opt/homebrew/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'
+else
+    alias vtags='/usr/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'
+fi
+
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_IN.UTF-8

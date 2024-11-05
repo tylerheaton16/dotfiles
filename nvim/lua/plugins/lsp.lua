@@ -125,6 +125,7 @@ return {
 
             -- ADD SERVERS HERE TO GET ATTACHED
             local servers = {
+                pyright = {},
                 clangd = {},
                 lua_ls = {
                     settings = {

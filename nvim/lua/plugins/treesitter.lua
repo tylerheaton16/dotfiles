@@ -8,14 +8,14 @@ return {
                 ensure_installed = {
                     "bash",
                     "c",
---                    "comment",
---                    "cpp",
+                    --                    "comment",
+                    --                    "cpp",
                     "json",
-                 --        "latex",
+                    --        "latex",
                     "lua",
                     "python",
                     "regex",
---                    "rst",
+                    --                    "rst",
                     "scala",
                     "verilog",
                     "yaml",
@@ -27,10 +27,10 @@ return {
                 textobjects = { enable = true },
                 incremental_selection = { enable = true },
 
-        }
+            }
         end,
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
-  }
+}

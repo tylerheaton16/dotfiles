@@ -153,6 +153,7 @@ export PATH="$HOME/.local/share/coursier/bin/:$PATH"
 
 if [[ "$(uname)" == "Darwin" ]]; then
     alias vtags='/opt/homebrew/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'
+    export PATH="/Library/TeX/texbin:$PATH"
 else
     alias vtags='/usr/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'
 fi

@@ -3,7 +3,6 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp",  -- Completion for LSP
             "scalameta/nvim-metals", -- Metals plugin
         },
     },
@@ -16,9 +15,6 @@ return {
         },
         opts = function()
             local lspconfig = require("lspconfig")
-
-            -- Adds cmp as a capability to the lsp autocompletion
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             -- Mappings.
             -- See :help vim.diagnostic.* for documentation on any of the below functions
@@ -146,7 +142,6 @@ return {
             for server, base_server_opts in pairs(servers) do
                 local server_opts = vim.tbl_deep_extend(
                     "force",
-                    { capabilities = vim.deepcopy(capabilities), },
                     base_server_opts or {},
                     { on_attach = custom_lsp_attach }
                 )
@@ -192,7 +187,6 @@ return {
             end
 
             metals_config.init_options.statusBarProvider = "on"
-            metals_config.capabilities = capabilities
 
             local lsp_metals = vim.api.nvim_create_augroup("lsp_metals", {})
             vim.api.nvim_create_autocmd("FileType", {

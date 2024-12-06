@@ -33,14 +33,6 @@ return {
         end,
     },
     {
-        "sustech-data/wildfire.nvim",
-        event = "VeryLazy",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            require("wildfire").setup()
-        end,
-    },
-    {
         "HiPhish/rainbow-delimiters.nvim",
     },
     {
@@ -169,6 +161,12 @@ return {
     },
     {
         "lervag/vimtex",
+        lazy = false, -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            -- VimTeX configuration goes here, e.g.
+            vim.g.vimtex_view_method = "skim"
+        end
     },
     --  use 'justinmk/vim-syntax-extra' -- c highlighting
     {
@@ -180,9 +178,6 @@ return {
     {
         "vim-scripts/tcl.vim--smithfield",
     },
-    --{
-    --    "tpope/vim-vinegar",
-    --},
     {
         "dhruvasagar/vim-table-mode",
     },
@@ -193,25 +188,9 @@ return {
         "itchyny/lightline.vim",
     },
     {
-        "m4xshen/autoclose.nvim",
-        config = function()
-            require("autoclose").setup({
-                options = {
-                    disabled_filetypes = { "text", "verilog_systemverilog", "sdc", },
-                }
-            })
-        end,
-    },
-    {
         "shumphrey/fugitive-gitlab.vim",
         dependencies = {
             "tpope/vim-fugitive"
-        },
-    },
-    {
-        "j-hui/fidget.nvim",
-        opts = {
-            -- options
         },
     },
     {
@@ -254,29 +233,5 @@ return {
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
-    },
-    -- Anything below this is absolutely useless and I have no clue why I added them
-    -- However, one could argue they increase productivity. Thanks reddit
-    {
-        "tamton-aquib/duck.nvim",
-        vim.keymap.set('n', '<leader>dd', function() require("duck").hatch() end, {}),
-        vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {}),
-        vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {}),
-    },
-    {
-        'eandrju/cellular-automaton.nvim'
-    },
-    {
-        "seandewar/killersheep.nvim",
-        config = function()
-            require("killersheep").setup {
-                gore = true,           -- Enables/disables blood and gore.
-                keymaps = {
-                    move_left = "h",   -- Keymap to move cannon to the left.
-                    move_right = "l",  -- Keymap to move cannon to the right.
-                    shoot = "<Space>", -- Keymap to shoot the cannon.
-                },
-            }
-        end,
     },
 }

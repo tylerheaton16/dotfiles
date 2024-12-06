@@ -70,11 +70,11 @@ if [ -e $HOME/.config/nvim/lua/plugins/treesitter.lua ]; then
      ln -sf $HOME/dotfiles/nvim/lua/plugins/treesitter.lua $HOME/.config/nvim/lua/plugins/treesitter.lua
 fi
 
-if [ -e $HOME/.config/nvim/lua/plugins/nvim-cmp.lua ]; then
-     mv $HOME/.config/nvim/lua/plugins/nvim-cmp.lua $HOME/$BACKUP/.nvim-cmp.lua_bak
-     ln -sf $HOME/dotfiles/nvim/lua/plugins/nvim-cmp.lua $HOME/.config/nvim/lua/plugins/nvim-cmp.lua
+if [ -e $HOME/.config/nvim/lua/plugins/coding.lua ]; then
+     mv $HOME/.config/nvim/lua/plugins/coding.lua $HOME/$BACKUP/.coding.lua_bak
+     ln -sf $HOME/dotfiles/nvim/lua/plugins/coding.lua $HOME/.config/nvim/lua/plugins/coding.lua
  else
-     ln -sf $HOME/dotfiles/nvim/lua/plugins/nvim-cmp.lua $HOME/.config/nvim/lua/plugins/nvim-cmp.lua
+     ln -sf $HOME/dotfiles/nvim/lua/plugins/coding.lua $HOME/.config/nvim/lua/plugins/coding.lua
 fi
 
 if [ -e $HOME/.config/nvim/lua/plugins/lsp.lua ]; then

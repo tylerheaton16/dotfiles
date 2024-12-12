@@ -24,6 +24,7 @@ return {
             keymap = {
                 ["<C-n>"] = { "select_next", "snippet_forward" },
                 ["<C-p>"] = { "select_prev", "snippet_backward" },
+                ["<CR>"] = { "select_and_accept" },
             },
             completion = {
                 list = {

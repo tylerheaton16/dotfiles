@@ -24,12 +24,12 @@ return {
             keymap = {
                 ["<C-n>"] = { "select_next", "snippet_forward" },
                 ["<C-p>"] = { "select_prev", "snippet_backward" },
-                ["<CR>"] = { "select_and_accept" },
+                ["<C-y>"] = { "select_and_accept" },
             },
             completion = {
                 list = {
                     -- auto completes the LSP options
-                    selection = "auto_insert"
+                    selection = { auto_insert = true },
                 },
                 menu = {
                     max_height = 30
@@ -37,9 +37,8 @@ return {
             },
 
             sources = {
-                completion = {
-                    enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
-                },
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                cmdline = {},
             },
         },
     },

@@ -1,13 +1,5 @@
 return {
     {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "scalameta/nvim-metals", -- Metals plugin
-        },
-    },
-    {
-        --"williamboman/nvim-lsp-installer",
         "williamboman/mason.nvim",
         dependencies = {
             "neovim/nvim-lspconfig",
@@ -123,6 +115,10 @@ return {
             local servers = {
                 pyright = {},
                 clangd = {},
+                verible = {
+                    filetypes = { "verilog_systemverilog" },
+                    cmd = { 'verible-verilog-ls', '--rules_config_search' },
+                },
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -201,5 +197,12 @@ return {
             require("mason").setup(opts)
             require("mason-lspconfig").setup()
         end,
-    }
+    },
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "scalameta/nvim-metals", -- Metals plugin
+        },
+    },
 }

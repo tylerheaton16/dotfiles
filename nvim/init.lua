@@ -182,6 +182,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- ClaudeCode Settings
 nmap('<leader>cc', '<cmd>ClaudeCode <cr>')
 
+-- nvim-tree settings
+nmap('<leader>nt', '<cmd>NvimTreeToggle <cr>')
+nmap('<leader>ntf', '<cmd>NvimTreeFindFile <cr>')
+
 -- nvim Configuration
 vim.opt.visualbell = true
 -- need cmdheight = 1 or searching makes me hit enter all the time

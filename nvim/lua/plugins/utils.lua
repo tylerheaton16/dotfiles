@@ -85,6 +85,13 @@ return {
         end,
     },
     {
+        "nvim-tree/nvim-tree.lua",
+        opts = {},
+        config = function(_, opts)
+            require("nvim-tree").setup(opts)
+        end,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",

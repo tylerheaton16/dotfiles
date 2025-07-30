@@ -180,7 +180,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- ClaudeCode Settings
-nmap('<leader>cc', '<cmd>ClaudeCode <cr>')
+nmap('<leader>cl', '<cmd>ClaudeCode <cr>')
 
 -- nvim-tree settings
 nmap('<leader>nt', '<cmd>NvimTreeToggle <cr>')

@@ -179,6 +179,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
+-- ClaudeCode Settings
+nmap('<leader>cc', '<cmd>ClaudeCode <cr>')
 
 -- nvim Configuration
 vim.opt.visualbell = true

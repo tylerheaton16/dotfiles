@@ -32,9 +32,9 @@ return {
             require("ibl").setup(opts)
         end,
     },
-    {
-        "HiPhish/rainbow-delimiters.nvim",
-    },
+    --{
+    --    "HiPhish/rainbow-delimiters.nvim",
+    --},
     {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         name = "lsp_lines.nvim",

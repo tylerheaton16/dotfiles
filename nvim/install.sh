@@ -35,7 +35,8 @@ if [ ! -f $HOME/nvim.appimage ]; then
     #curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     #neovim-releases is RHEL8, releaes uses RHEL9.
     #wget https://github.com/neovim/neovim-releases/releases/download/nightly/nvim.appimage
-    wget https://github.com/neovim/neovim-releases/releases/download/stable/nvim.appimage
+    #wget https://github.com/neovim/neovim-releases/releases/download/stable/nvim.appimage
+    wget https://github.com/neovim/neovim-releases/releases/download/v0.11.1/nvim-linux-x86_64.appimage
         if [[ -f $HOME/.local/bin/nvim ]]
         then
             rm $HOME/.local/bin/nvim

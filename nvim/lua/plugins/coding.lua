@@ -69,6 +69,24 @@ return {
         },
     },
     {
+        "nvim-tree/nvim-tree.lua",
+        opts = {},
+        config = function(_, opts)
+            require("nvim-tree").setup(opts)
+        end,
+    },
+    {
+        "stevearc/aerial.nvim",
+        opts = {
+            layout = {
+                default_direction = "prefer_right",
+            },
+        },
+        config = function(_, opts)
+            require("aerial").setup(opts)
+        end,
+    },
+    {
         "greggh/claude-code.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim", -- Required for git operations

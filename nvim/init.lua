@@ -182,9 +182,13 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- ClaudeCode Settings
 nmap('<leader>cl', '<cmd>ClaudeCode <cr>')
 
--- nvim-tree settings
+-- nvim-tree Settings
 nmap('<leader>nt', '<cmd>NvimTreeToggle <cr>')
 nmap('<leader>ntf', '<cmd>NvimTreeFindFile <cr>')
+
+-- aerial Settings
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+vim.keymap.set("n", "<leader>ta", "<cmd>:Telescope aerial<cr>")
 
 -- nvim Configuration
 vim.opt.visualbell = true

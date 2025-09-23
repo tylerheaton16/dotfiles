@@ -20,7 +20,7 @@ return {
                 lua_ls = {
                     settings = {
                         Lua = {
-                            --format = { enable = false },           -- Use stylua instead
+                            format = { enable = false },           -- Use stylua instead
                             runtime = { version = "LuaJIT" },
                             diagnostics = { globals = { "vim" } }, -- Recognize the vim global
                             workspace = {
@@ -62,11 +62,11 @@ return {
                 vim.api.nvim_set_hl(0, "DiagnosticUnderline" .. type, { undercurl = fields.undercurl })
             end
             local servers = opts.servers
-            local lspconfig = require("lspconfig")
 
             for server, config in pairs(servers) do
                 config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-                lspconfig[server].setup(config)
+                vim.lsp.config(server, config)
+                vim.lsp.enable(server)
             end
 
             vim.api.nvim_create_autocmd("LspAttach", {

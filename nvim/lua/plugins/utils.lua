@@ -145,7 +145,6 @@ return {
     {
         "godlygeek/tabular",
     },
-    --use 'vim-scripts/verilog_emacsauto.vim'
     {
         "preservim/vimux" --From vim can open tmux terminal",
     },

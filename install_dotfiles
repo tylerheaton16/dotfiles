@@ -42,16 +42,10 @@ if $CFG_INSTALL_NVIM ; then
     $DOTFILES_DIR/nvim/install.sh
 fi
 
-## Customize vimrc config file
-if $CFG_INSTALL_VIMRC ; then
-    iecho "Symlinking .vimrc"
-    $DOTFILES_DIR/vimrc/install.sh
-fi
-
-## Customize spacemacs config file
-if $CFG_INSTALL_SPACEMACS ; then
-    iecho "Symlinking .spacemacs"
-    $DOTFILES_DIR/spacemacs/install.sh
+## Set up zellij customization
+if $CFG_SETUP_ZELLIJ; then
+    iecho "Setting up Zellij config"
+    $DOTFILES_DIR/zellij/install.sh
 fi
 
 ## Customize spacemacs config file
@@ -98,17 +92,17 @@ fi
 ######################################################################
 # Create .tmux.conf TMUX configuration file
 ######################################################################
-if [ -e $HOME/.tmux.conf ]; then 
+if [ -e $HOME/.tmux.conf ]; then
     mv $HOME/.tmux.conf $HOME/$BACKUP/.tmux.conf_bak
-    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf 
+    ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 else
     ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 fi
 
 ##################################################################
-# Create .elisp file to hold verilog-auto.el file   
+# Create .elisp file to hold verilog-auto.el file
 ##################################################################
-if [ -e $HOME/.elisp ]; then 
+if [ -e $HOME/.elisp ]; then
     mv $HOME/.elisp $HOME/$BACKUP/.elisp_bak
     ln -s $HOME/dotfiles/.elisp $HOME/.elisp
 else
@@ -126,7 +120,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ##################################################################
 #Install Tmux Theme Pack If Not Installed ########################
 ##################################################################
-if [ ! -d $HOME/.tmux-themepack ]; then 
+if [ ! -d $HOME/.tmux-themepack ]; then
  git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack
  echo "Tmux Themepack Not Installed: Installing"
  echo " "
@@ -136,7 +130,7 @@ fi
 ##################################################################
 #Create URxvt/Xterm Color Files for 256 ##########################
 ##################################################################
-if [ ! -d $HOME/.terminfo ]; then 
+if [ ! -d $HOME/.terminfo ]; then
     cp -R $HOME/dotfiles/.terminfo $HOME
 fi
 
@@ -144,7 +138,7 @@ fi
 #------------------------------------------------------------------------------#
 #                               Custom Vim Syntax                              #
 #------------------------------------------------------------------------------#
-if [ -d $HOME/.vim/syntax ]; then 
+if [ -d $HOME/.vim/syntax ]; then
     mv $HOME/.vim/syntax $HOME/$BACKUP/.vim/syntax_bak
     ln -s $HOME/dotfiles/syntax $HOME/.vim/syntax
 else

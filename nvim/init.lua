@@ -270,6 +270,10 @@ vim.opt.listchars = {
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
+--lsp window
+vim.opt.winborder = 'rounded'
+
+
 -- venn.nvim: enable or disable keymappings
 function _G.Toggle_venn()
     local venn_enabled = vim.inspect(vim.b.venn_enabled)

@@ -149,7 +149,7 @@ export PS1="\[\033[38;5;231m\][\u\[$(tput sgr0)\]\[\033[38;5;15m\] \w$White\[$(t
 export PATH="$HOME/dotfiles/git-delta/delta-0.11.3-x86_64-unknown-linux-gnu:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/share/coursier/bin/:$PATH"
-#export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
+export JAVA_HOME="/home/users/tyler.heaton/.sdkman/candidates/java/current/"
 
 if [[ "$(uname)" == "Darwin" ]]; then
     alias vtags='/opt/homebrew/bin/python3 $HOME/.local/share/nvim/lazy/vtags/lua/vtags-3.11/vtags.py'

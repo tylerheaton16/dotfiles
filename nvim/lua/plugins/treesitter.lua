@@ -30,7 +30,13 @@ return {
             }
         end,
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
+            require("nvim-treesitter").install(opts)
+            for _, ft in ipairs(opts) do
+                vim.api.nvim_create_autocmd('FileType', {
+                    pattern = { ft },
+                    callback = function() vim.treesitter.start() end,
+                })
+        end
         end,
     },
 }

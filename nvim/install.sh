@@ -36,7 +36,8 @@ if [ ! -f $HOME/nvim.appimage ]; then
     #neovim-releases is RHEL8, releaes uses RHEL9.
     #wget https://github.com/neovim/neovim-releases/releases/download/nightly/nvim.appimage
     #wget https://github.com/neovim/neovim-releases/releases/download/stable/nvim.appimage
-    wget https://github.com/neovim/neovim-releases/releases/download/v0.11.1/nvim-linux-x86_64.appimage
+    wget https://github.com/neovim/neovim-releases/releases/download/v0.12.0/nvim-linux-x86_64.appimage
+    cargo install --locked tree-sitter-cli
         if [[ -f $HOME/.local/bin/nvim ]]
         then
             rm $HOME/.local/bin/nvim

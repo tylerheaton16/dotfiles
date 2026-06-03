@@ -1,5 +1,12 @@
 return {
     {
+        "hudson-trading/slang-server.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+        opts = {},
+    },
+    {
         "mason-org/mason.nvim",
         dependencies = {
             "mason-org/mason-lspconfig.nvim",
@@ -13,10 +20,6 @@ return {
             servers = {
                 pyright = {},
                 clangd = {},
-                verible = {
-                    filetypes = { "verilog_systemverilog" },
-                    cmd = { 'verible-verilog-ls', '--rules_config_search' },
-                },
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -29,6 +32,15 @@ return {
                             },
 
                         },
+                    },
+                },
+                slang_server = {
+                 cmd = { "slang-server" },
+                    root_markers = { ".git", ".slang" },
+                    filetypes = {
+                        "systemverilog",
+                        "verilog",
+                        "verilog_systemverilog",
                     },
                 },
             },

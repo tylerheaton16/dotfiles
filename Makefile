@@ -52,5 +52,9 @@ ifeq ($(RUST),1)
 include rust/install.mk
 endif
 
+ifeq ($(SLANG),1)
+include slang-verilog-install/install.mk
+endif
+
 .PHONY: all $(ALL_TARGETS)
 all: $(ALL_TARGETS)

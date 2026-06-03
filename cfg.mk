@@ -13,6 +13,7 @@ DELTA      = 0
 TMUX       = 0
 ELISP      = 0
 RUST       = 0
+SLANG      = 0
 
 RUST_PACKAGES := \
 	bender \

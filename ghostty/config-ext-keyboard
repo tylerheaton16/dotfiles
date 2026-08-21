@@ -1,0 +1,49 @@
+config-file = global/config
+
+# Keybinds
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard
+keybind = alt+control+k=scroll_page_up
+keybind = alt+control+j=scroll_page_down
+
+# Windows / Tabs
+keybind = global:alt+enter=new_window
+keybind = alt+t=new_tab
+keybind = alt+x=close_window
+keybind = alt+shift+x=close_all_windows
+keybind = alt+f=toggle_fullscreen
+
+# Create Split
+keybind = alt+shift+l=new_split:right
+keybind = alt+shift+j=new_split:down
+keybind = alt+shift+k=new_split:up
+keybind = alt+shift+h=new_split:left
+
+# Change Split
+keybind = alt+l=goto_split:right
+keybind = alt+j=goto_split:down
+keybind = alt+k=goto_split:up
+keybind = alt+h=goto_split:left
+
+# Misc
+keybind = alt+shift+[=equalize_splits
+keybind = alt+o=toggle_split_zoom
+keybind = alt+q=close_surface
+keybind = cmd+r=reload_config
+
+# Quick Terminal
+keybind = alt+n=toggle_quick_terminal
+
+# Use non-native full screen to preserve transparency
+macos-non-native-fullscreen = true
+
+# Need to change tabs based on alt instead
+keybind = alt+1=goto_tab:1
+keybind = alt+2=goto_tab:2
+keybind = alt+3=goto_tab:3
+keybind = alt+4=goto_tab:4
+keybind = alt+5=goto_tab:5
+keybind = alt+6=goto_tab:6
+keybind = alt+7=goto_tab:7
+keybind = alt+8=goto_tab:8
+keybind = alt+9=goto_tab:9

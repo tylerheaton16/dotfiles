@@ -7,23 +7,18 @@ return {
         opts = {},
     },
     {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = { "lua_ls", "rust_analyzer", "slang_server", "pyright" },
-
-        },
-        dependencies = {
-            { "mason-org/mason.nvim", opts = {} },
-            "neovim/nvim-lspconfig",
-        },
-    },
-    {
         "mason-org/mason.nvim",
         dependencies = {
-            "mason-org/mason-lspconfig.nvim",
+            {"mason-org/mason-lspconfig.nvim",
+            opts = {
+                ensure_installed = { "lua_ls", "rust_analyzer", "slang_server", "pyright" }
+            },
+            dependencies = {
+                "neovim/nvim-lspconfig",
+            },
             "neovim/nvim-lspconfig",
             "saghen/blink.cmp",
-        },
+        }},
         opts = {
             inlay_hints = {
                 enabled = false,

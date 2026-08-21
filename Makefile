@@ -56,5 +56,9 @@ ifeq ($(SLANG),1)
 include slang-verilog-install/install.mk
 endif
 
+ifeq ($(GHOSTTY),1)
+include ghostty/install.mk
+endif
+
 .PHONY: all $(ALL_TARGETS)
 all: $(ALL_TARGETS)

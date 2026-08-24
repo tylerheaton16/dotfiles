@@ -273,6 +273,9 @@ vim.opt.spell = true
 --lsp window
 vim.opt.winborder = 'rounded'
 
+--Clipboard settings
+vim.g.clipboard = 'osc52'
+
 
 -- venn.nvim: enable or disable keymappings
 function _G.Toggle_venn()

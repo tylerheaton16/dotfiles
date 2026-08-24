@@ -275,6 +275,7 @@ vim.opt.winborder = 'rounded'
 
 --Clipboard settings
 vim.g.clipboard = 'osc52'
+vim.opt.clipboard = "unnamedplus"
 
 
 -- venn.nvim: enable or disable keymappings

@@ -76,6 +76,7 @@ end
 g.mapleader = " "
 g.maplocalleader = " "
 
+vim.keymap.set("v", "<leader>y", "\"*y")
 nmap("<leader>ev", ":vsplit $MYVIMRC <CR>")
 nmap("<leader>vr", ":source $MYVIMRC <CR>")
 nmap("<leader>eb", ":vsplit $HOME/.bashrc <CR>")
@@ -274,8 +275,24 @@ vim.opt.spell = true
 vim.opt.winborder = 'rounded'
 
 --Clipboard settings
-vim.g.clipboard = 'osc52'
 vim.opt.clipboard = "unnamedplus"
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ['+'] = require("vim.ui.clipboard.osc52").copy("+"),
+    ['*'] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ['+'] = paste,
+    ['*'] = paste,
+  },
+}
 
 
 -- venn.nvim: enable or disable keymappings

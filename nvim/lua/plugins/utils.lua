@@ -209,15 +209,6 @@ return {
         end,
     },
     {
-        "LinArcX/telescope-env.nvim",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-        },
-        config = function()
-            require("telescope").load_extension("env")
-        end,
-    },
-    {
         "jbyuki/venn.nvim"
     },
     {
